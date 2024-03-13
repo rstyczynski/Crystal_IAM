@@ -3,7 +3,6 @@
 * [OCI access controls](#oci-access-controls)
 * [Real life organizations create complexity](#real-life-organizations-create-complexity)
 * [Keep it simple](#keep-it-simple)
-* [Did you delete your file system?](#did-you-delete-your-file-system)
 * [Access privileges](#access-privileges)/[Privilege cluster](#privilege-cluster)
 * [Operating model](#operating-model)
 * [Features](#features)
