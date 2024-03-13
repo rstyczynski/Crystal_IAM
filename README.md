@@ -50,7 +50,7 @@ Crystal@IAM makes it simpler by resource access templates, access clusters, and 
 # Access privileges
 Crystal@IAM comes with a general approach that administrator may create, optimize, and retire resources but cannot delete them. Anyone who at least once deleted volume or file system w/o taking backup knows how it is. Resource creation does not lead to disruption, but deletion by mistake does. 
 
-Two major access rights are proposed by Crystal@IAM: admin, and use. Other of course are sill available. Crystal@IAM enables OCI tenants to model resource life-cycle based on admin/use/decommission approach.
+Crystal@IAM enables OCI tenants to model resource life-cycle based on admin/use/decommission approach, where three major access rights are promoted: admin, use, and decommission. Other of course are sill available for use when needed; especially for break-glass access with crude manage privilege.
 
 ![Crystal@AIM operating roles](images/life-cycle.svg "Crystal@AIM operating roles")
 
