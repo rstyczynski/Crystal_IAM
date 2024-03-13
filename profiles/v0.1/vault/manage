@@ -1,0 +1,3 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/keypolicyreference.htm#Details_for_the_Vault_Service
+
+allow group $GROUP to manage vaults in $LOCATION

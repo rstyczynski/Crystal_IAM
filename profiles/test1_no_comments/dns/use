@@ -1,0 +1,3 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/dnspolicyreference.htm
+
+allow group $GROUP to use dns in $LOCATION

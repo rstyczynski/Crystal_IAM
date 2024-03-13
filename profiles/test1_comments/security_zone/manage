@@ -1,0 +1,6 @@
+# https://docs.oracle.com/en-us/iaas/security-zone/using/security-zone-iam-policies.htm
+
+allow group $GROUP to manage security-zone in $LOCATION
+where all {
+    request.ad!='$COMMENT'
+}

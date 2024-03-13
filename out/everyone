@@ -1,0 +1,6 @@
+
+allow group everyone to inspect all-resources in compartment monitoring where all { any {request.permission=/ALARM_*/, request.permission=/METRIC_*/} } 
+allow group everyone to inspect all-resources in tenancy where all { any {request.permission=/TENANCY_*/, request.permission=/COMPARTMENT_*/} } 
+allow group everyone to manage tag-namespaces in tenancy where all { any { request.permission='TAG_NAMESPACE_INSPECT' } } 
+allow group everyone to use cloud-shell in tenancy 
+allow group everyone to use dashboards-family in compartment monitoring 

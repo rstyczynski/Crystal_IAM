@@ -1,0 +1,9 @@
+allow group $GROUP to manage volume-family in $LOCATION
+where
+all {
+	any {
+		request.permission='VOLUME_CREATE',
+		request.permission='VOLUME_INSPECT',
+		request.permission='VOLUME_UPDATE'
+	}
+}

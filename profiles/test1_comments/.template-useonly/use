@@ -1,0 +1,3 @@
+# $URL
+allow group $GROUP to use $RESOURCE_AIM in $LOCATION
+where request.ad!='$COMMENT'

@@ -1,0 +1,2 @@
+
+allow group local_firewall_operator to inspect virtual-network-family in compartment network where all { any {request.permission=/NETWORK-SECURITY-GROUP_*/, request.permission=/SECURITY-LIST_*/} } 

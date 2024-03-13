@@ -1,0 +1,7 @@
+
+allow group cost_admin to manage object-family in compartment governance where request.permission!=/*_DELETE/ 
+allow group cost_admin to manage quota in tenancy where request.permission!=/*_DELETE/ 
+allow group cost_admin to manage tag-namespaces in tenancy where all { request.permission!=/*_DELETE/, any { request.permission='TAG_NAMESPACE_*' }, target.tag-namespace.name='tag_cost-tracking' } 
+allow group cost_admin to manage tag-namespaces in tenancy where all { request.permission!=/*_DELETE/, any { request.permission='TAG_NAMESPACE_*' }, target.tag-namespace.name='tag_resource initial' } 
+allow group cost_admin to manage usage-budgets in tenancy where request.permission!=/*_DELETE/ 
+allow group cost_admin to manage usage-reports in tenancy where request.permission!=/*_DELETE/ 

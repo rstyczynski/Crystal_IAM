@@ -1,0 +1,113 @@
+
+
+
+allow group ryszard-admins to manage virtual-network-family 
+in compartment sandbox where any {
+request.permission=/VNIC_ATTACHMENT_READ/, 
+request.permission=/VNIC_INSPECT/, 
+request.permission=/VNIC_CREATE/, 
+request.permission=/VNIC_ASSOCIATE_NETWORK_SECURITY_GROUP/, 
+request.permission=/VNIC_ATTACH/, 
+request.permission=/VNIC_UPDATE/, 
+request.permission=/VNIC_READ/, 
+request.permission=/VCN_ATTACH/, 
+request.permission=/SUBNET_ATTACH/
+}
+
+allow group ryszard-admins to manage virtual-network-family 
+in compartment sandbox where any {
+request.permission=/VNIC_ATTACHMENT_READ/, 
+request.permission=/VNIC_*/,
+request.permission=/VCN_ATTACH/, 
+request.permission=/SUBNET_ATTACH/
+}
+
+allow group ryszard-admins to manage virtual-network-family 
+in compartment sandbox where all {
+    request.permission!=/*_DELETE/,
+    any {
+request.permission=/VNIC_ATTACHMENT_READ/, 
+request.permission=/VNIC_*/,
+request.permission=/PRIVATE_IP_*/,
+request.permission=/VCN_*/, 
+request.permission=/SUBNET_*/,
+request.permission=/ROUTE_TABLE_*/, 
+request.permission=/NETWORK_SECURITY_GROUP_*/, 
+request.permission=/SECURITY_LIST_*/
+}
+}
+
+allow group ryszard-admins to manage virtual-network-family 
+in compartment sandbox where all {
+    request.permission!=/*_DELETE/
+}
+
+allow group ryszard-admins to manage virtual-network-family 
+in compartment sandbox where all {
+    request.permission!=/*_DELETE/,
+    any {
+request.permission=/VCN_*/, 
+request.permission=/SUBNET_*/,
+request.permission=/ROUTE_TABLE_*/, 
+request.permission=/NETWORK_SECURITY_GROUP_*/, 
+request.permission=/SECURITY_LIST_*/,
+request.permission=/VNIC_*/,
+request.permission=/PRIVATE_IP_*/
+}
+}
+
+
+allow group ryszard-admins to manage virtual-network-family 
+in compartment sandbox where 
+    any {
+request.permission=/VCN_*/, 
+request.permission=/SUBNET_*/,
+request.permission=/ROUTE_TABLE_*/, 
+request.permission=/NETWORK_SECURITY_GROUP_*/, 
+request.permission=/SECURITY_LIST_*/,
+request.permission=/VNIC_*/,
+request.permission=/PRIVATE_IP_*/
+}
+
+allow group ryszard-admins to manage virtual-network-family 
+in compartment sandbox where 
+    any {
+request.permission=/VNIC_ATTACHMENT_READ/, 
+request.permission=/VNIC_*/,
+request.permission=/PRIVATE_IP_*/,
+request.permission=/VCN_*/, 
+request.permission=/SUBNET_*/,
+request.permission=/ROUTE_TABLE_*/, 
+request.permission=/NETWORK_SECURITY_GROUP_*/, 
+request.permission=/SECURITY_LIST_*/
+}
+
+Hello. I'm working on access policy for admins creating bastions. Documented manage on network-family it s too wide permission.  Below works, but I'd like to remove DELETE privilege. Once DELETE is blocked it's not possible to create bastion. Let me know, please, which resource must be permitted to be deleted during bastion creation?
+allow group $GROUP to manage all-resources in $LOCATION
+where 
+	any {
+		request.permission='BASTION_INSPECT',
+		request.permission='BASTION_CREATE',
+		request.permission='VNIC_ATTACHMENT_READ', 
+		request.permission=/VNIC_*/,
+		request.permission=/PRIVATE_IP_*/,
+		request.permission=/VCN_*/, 
+		request.permission=/SUBNET_*/,
+		request.permission=/ROUTE_TABLE_*/, 
+		request.permission=/NETWORK_SECURITY_GROUP_*/, 
+		request.permission=/SECURITY_LIST_*/	
+	}
+'
+https://sales-emea-japac.slack.com/archives/C86V7PZNX/p1707746514185639
+
+
+=== BASTION INSPECT
+
+allow group ryszard-admins to manage bastion-family in compartment sandbox  
+where all { request.ad!='xx', any { 
+    request.permission='BASTION_INSPECT', 
+    request.permission='BASTION_READ', 
+    request.permission='BASTION_SESSION_INSPECT' 
+    }}
+
+OK

@@ -1,0 +1,8 @@
+
+allow group cost_operator to manage quota in tenancy where all { any { request.permission='QUOTA_INSPECT' } } 
+allow group cost_operator to manage tag-namespaces in tenancy where all { any { request.permission='TAG_NAMESPACE_INSPECT' } } 
+allow group cost_operator to manage usage-budgets in tenancy where all { any { request.permission='USAGE_BUDGET_INSPECT' } } 
+allow group cost_operator to manage usage-reports in tenancy where all { any { request.permission='USAGE_REPORT_INSPECT' } } 
+allow group cost_operator to manage usage-reports in tenancy where all { any { request.permission='USAGE_REPORT_INSPECT', request.permission='USAGE_REPORT_READ' } } 
+allow group cost_operator to use object-family in compartment governance 
+allow group cost_operator to use optimizer-api-family in tenancy 

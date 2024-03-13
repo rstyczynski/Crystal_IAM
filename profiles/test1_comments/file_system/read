@@ -1,0 +1,6 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/filestoragepolicyreference.htm
+
+allow group $GROUP to read file-family in $LOCATION
+where all {
+    request.ad!='$COMMENT'
+}

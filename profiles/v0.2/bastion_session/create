@@ -1,0 +1,19 @@
+# https://docs.oracle.com/en-us/iaas/Content/Bastion/Reference/bastionpolicyreference.htm
+
+allow group $GROUP to manage bastion-family in $LOCATION
+where all {
+	any {
+		request.permission='BASTION_SESSION_INSPECT',
+		request.permission='BASTION_SESSION_CREATE',
+        request.permission='BASTION_USE',
+		request.permission='VCN_READ', 
+		request.permission='VNIC_ATTACHMENT_READ', 
+		request.permission='VNIC_READ',
+		request.permission='SUBNET_READ',
+        request.permission='INSTANCE_INSPECT',
+        request.permission='INSTANCE_READ',
+        request.permission='INSTANCE_AGENT_PLUGIN_READ'
+		}
+}
+
+allow group $GROUP to inspect work-requests in $LOCATION

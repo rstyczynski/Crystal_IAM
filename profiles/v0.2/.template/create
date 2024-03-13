@@ -1,0 +1,10 @@
+# $URL
+
+allow group $GROUP to manage $RESOURCE_AIM in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+	any {
+		request.permission='$RESOURCE_CODE_INSPECT',
+		request.permission='$RESOURCE_CODE_CREATE'
+	}
+}

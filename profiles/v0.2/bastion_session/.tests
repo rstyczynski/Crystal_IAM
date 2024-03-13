@@ -1,0 +1,32 @@
+
+allow group ryszard-admins to manage all-resources in tenancy
+where all {
+    request.ad!='test1',
+	any {
+		request.permission='BASTION_SESSION_INSPECT',
+		request.permission='BASTION_SESSION_CREATE',
+        request.permission='BASTION_USE',
+		request.permission='VCN_READ', 
+		request.permission='SUBNET_READ',
+        request.permission='INSTANCE_READ'
+	}
+}
+allow group ryszard-admins to read instance-family in tenancy
+allow group ryszard-admins to read instance-agent-plugins in tenancy
+allow group ryszard-admins to inspect work-requests in tenancy
+
+
+allow group $GROUP to manage all-resources in $LOCATION
+where 
+	any {
+		request.permission='BASTION_INSPECT',
+		request.permission='BASTION_CREATE',
+		request.permission='VNIC_ATTACHMENT_READ', 
+		request.permission=/VNIC_*/,
+		request.permission=/PRIVATE_IP_*/,
+		request.permission=/VCN_*/, 
+		request.permission=/SUBNET_*/,
+		request.permission=/ROUTE_TABLE_*/, 
+		request.permission=/NETWORK_SECURITY_GROUP_*/, 
+		request.permission=/SECURITY_LIST_*/	
+	}

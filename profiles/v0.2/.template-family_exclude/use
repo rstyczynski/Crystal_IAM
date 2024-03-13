@@ -1,0 +1,7 @@
+# $URL
+
+allow group $GROUP to use $RESOURCE_AIM in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+    $SNIPPET_RESOURCES
+}

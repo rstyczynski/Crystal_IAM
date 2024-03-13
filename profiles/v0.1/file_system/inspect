@@ -1,0 +1,3 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/filestoragepolicyreference.htm
+
+allow group $GROUP to inspect file-family in $LOCATION

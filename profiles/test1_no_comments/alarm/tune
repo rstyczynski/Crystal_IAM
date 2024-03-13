@@ -1,0 +1,10 @@
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Identity/policyreference/monitoringpolicyreference.htm
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Identity/policyreference/iampolicyreference.htm#top
+
+allow group $GROUP to manage alarms in $LOCATION
+where all {
+	any {
+		request.permission='ALARM_INSPECT',
+		request.permission='ALARM_UPDATE'
+	}
+}

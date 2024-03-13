@@ -1,0 +1,9 @@
+# https://docs.oracle.com/en/engineered-systems/exadata-cloud-service/ecscm/ecs-policy-details.html#GUID-A967AE72-E18C-40ED-A928-D865618E9B9E
+
+allow group $GROUP to manage cloud-exadata-infrastructures in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+	any {
+		request.permission='CLOUD_EXADATA_INFRASTRUCTURE_INSPECT'
+	}
+}

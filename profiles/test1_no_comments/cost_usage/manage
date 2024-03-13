@@ -1,0 +1,3 @@
+# https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costanalysisoverview.htm
+
+allow group $GROUP to manage usage-reports in $LOCATION

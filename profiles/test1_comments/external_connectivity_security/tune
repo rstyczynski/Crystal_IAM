@@ -1,0 +1,9 @@
+# https://docs.oracle.com/en-us/iaas/Content/network-firewall/iam-policy-reference.htm
+
+allow group $GROUP to manage network-firewall-family in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+    request.permission!=/*_CREATE/,
+    request.permission!=/*_DELETE/,
+    request.permission!=/*_MOVE/
+}

@@ -1,0 +1,6 @@
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Identity/policyreference/monitoringpolicyreference.htm
+
+allow group $GROUP to inspect all-resources in $LOCATION
+where all {
+    any {request.permission=/ALARM_*/, request.permission=/METRIC_*/}
+}

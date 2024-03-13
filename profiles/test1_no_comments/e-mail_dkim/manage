@@ -1,0 +1,3 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/emailpolicyreference.htm
+
+allow group $GROUP to manage dkim in $LOCATION

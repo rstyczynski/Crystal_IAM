@@ -1,0 +1,7 @@
+
+allow group storage_operator to manage volume-family in compartment appgroup1:storage where all { any { request.permission='VOLUME_INSPECT', request.permission='VOLUME_UPDATE', request.permission='VOLUME_WRITE' } } 
+allow group storage_operator to manage volume-family in compartment storage where all { any { request.permission='VOLUME_INSPECT', request.permission='VOLUME_UPDATE', request.permission='VOLUME_WRITE' } } 
+allow group storage_operator to use file-family in compartment appgroup1:storage 
+allow group storage_operator to use file-family in compartment storage 
+allow group storage_operator to use object-family in compartment appgroup1:storage 
+allow group storage_operator to use object-family in compartment storage 

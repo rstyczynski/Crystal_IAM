@@ -1,0 +1,5 @@
+
+allow group backup_admin to manage tag-namespaces in tenancy where all { any { request.permission='TAG_NAMESPACE_INSPECT', request.permission='TAG_NAMESPACE_READ' }, target.tag-namespace.name='tag_cost-tracking' } 
+allow group backup_admin to manage tag-namespaces in tenancy where all { any { request.permission='TAG_NAMESPACE_INSPECT', request.permission='TAG_NAMESPACE_READ' }, target.tag-namespace.name='tag_resource initial' } 
+allow group backup_admin to manage volume-family in compartment appgroup1:storage where request.permission!=/*_DELETE/ 
+allow group backup_admin to manage volume-family in compartment storage where request.permission!=/*_DELETE/ 

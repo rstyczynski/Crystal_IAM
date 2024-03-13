@@ -1,0 +1,75 @@
+=== manage
+allow group ryszard-admins to manage optimizer-api-family in tenancy
+
+=== selective manage
+allow group ryszard-admins to manage optimizer-api-family in tenancy where 
+    any {
+    request.permission='OPTIMIZER_ENROLLMENT_INSPECT',
+    request.permission='OPTIMIZER_ENROLLMENT_READ',
+    request.permission='#OPTIMIZER_ENROLLMENT_UPDATE',
+
+    # Work Requests Menu
+    request.permission='OPTIMIZER_WORKREQUEST_INSPECT',
+    request.permission='OPTIMIZER_WORKREQUEST_READ'
+
+    # Settings Menu
+    request.permission='OPTIMIZER_CATEGORY_INSPECT',
+    request.permission='OPTIMIZER_CATEGORY_READ',
+
+    request.permission='OPTIMIZER_PROFILE_INSPECT',
+    request.permission='OPTIMIZER_PROFILE_READ',
+    request.permission='#OPTIMIZER_PROFILE_UPDATE',
+    request.permission='#OPTIMIZER_PROFILE_CREATE',
+    request.permission='#OPTIMIZER_PROFILE_DELETE',
+
+    request.permission='OPTIMIZER_PROFILE_LEVEL_INSPECT',
+
+    # Recommendation Menu
+    request.permission='OPTIMIZER_RECOMMENDATION_STRATEGY_INSPECT',
+    request.permission='OPTIMIZER_RECOMMENDATION_INSPECT',
+    request.permission='OPTIMIZER_RECOMMENDATION_READ',
+    request.permission='#OPTIMIZER_RECOMMENDATION_UPDATE',
+
+    # History Menu
+    # family: optimizer-resource-metadata
+    request.permission='OPTIMIZER_HISTORY_INSPECT',
+    request.permission='OPTIMIZER_RESOURCE_ACTION_INSPECT',
+
+    # family: optimizer-resource-action
+    request.permission='OPTIMIZER_RESOURCE_ACTION_READ',
+    request.permission='#OPTIMIZER_RESOURCE_ACTION_UPDATE',
+
+    }
+---
+allow group ryszard-admins to manage optimizer-api-family in tenancy where 
+    any {
+    request.permission='OPTIMIZER_ENROLLMENT_INSPECT',
+    request.permission='OPTIMIZER_ENROLLMENT_READ',
+    request.permission='_OPTIMIZER_ENROLLMENT_UPDATE',
+
+    request.permission='OPTIMIZER_WORKREQUEST_INSPECT',
+    request.permission='OPTIMIZER_WORKREQUEST_READ',
+
+    request.permission='OPTIMIZER_CATEGORY_INSPECT',
+    request.permission='OPTIMIZER_CATEGORY_READ',
+
+    request.permission='OPTIMIZER_PROFILE_INSPECT',
+    request.permission='OPTIMIZER_PROFILE_READ',
+    request.permission='_OPTIMIZER_PROFILE_UPDATE',
+    request.permission='_OPTIMIZER_PROFILE_CREATE',
+    request.permission='_OPTIMIZER_PROFILE_DELETE',
+
+    request.permission='OPTIMIZER_PROFILE_LEVEL_INSPECT',
+
+    request.permission='OPTIMIZER_RECOMMENDATION_STRATEGY_INSPECT',
+    request.permission='OPTIMIZER_RECOMMENDATION_INSPECT',
+    request.permission='OPTIMIZER_RECOMMENDATION_READ',
+    request.permission='_OPTIMIZER_RECOMMENDATION_UPDATE',
+
+    request.permission='OPTIMIZER_HISTORY_INSPECT',
+    request.permission='OPTIMIZER_RESOURCE_ACTION_INSPECT',
+
+    request.permission='OPTIMIZER_RESOURCE_ACTION_READ',
+    request.permission='_OPTIMIZER_RESOURCE_ACTION_UPDATE'
+
+    }

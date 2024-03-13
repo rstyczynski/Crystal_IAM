@@ -1,0 +1,9 @@
+# https://docs.oracle.com/en-us/iaas/Content/Bastion/Reference/bastionpolicyreference.htm
+
+allow group $GROUP to manage bastion-family in $LOCATION
+where all {
+	any {
+		request.permission='BASTION_INSPECT',
+		request.permission='BASTION_READ'
+	}
+}

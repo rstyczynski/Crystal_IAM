@@ -1,0 +1,3 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/policyreference/objectstoragepolicyreference.htm
+
+allow group $GROUP to read object-family in $LOCATION

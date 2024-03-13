@@ -1,0 +1,10 @@
+
+allow group storage_admin to manage file-family in compartment appgroup1:storage where request.permission!=/*_DELETE/ 
+allow group storage_admin to manage file-family in compartment storage where request.permission!=/*_DELETE/ 
+allow group storage_admin to manage object-family in compartment appgroup1:storage where request.permission!=/*_DELETE/ 
+allow group storage_admin to manage object-family in compartment governance where request.permission!=/*_DELETE/ 
+allow group storage_admin to manage object-family in compartment storage where request.permission!=/*_DELETE/ 
+allow group storage_admin to manage tag-namespaces in tenancy where all { any { request.permission='TAG_NAMESPACE_INSPECT', request.permission='TAG_NAMESPACE_READ' }, target.tag-namespace.name='tag_cost-tracking' } 
+allow group storage_admin to manage tag-namespaces in tenancy where all { any { request.permission='TAG_NAMESPACE_INSPECT', request.permission='TAG_NAMESPACE_READ' }, target.tag-namespace.name='tag_resource initial' } 
+allow group storage_admin to manage volume-family in compartment appgroup1:storage where request.permission!=/*_DELETE/ 
+allow group storage_admin to manage volume-family in compartment storage where request.permission!=/*_DELETE/ 

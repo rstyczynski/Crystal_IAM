@@ -1,0 +1,8 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/certificatespolicyreference.htm
+
+allow group $GROUP to manage certificate-authority-family in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+    request.permission!=/*_CREATE/,
+    request.permission!=/*_MOVE/
+}

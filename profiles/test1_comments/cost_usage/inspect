@@ -1,0 +1,9 @@
+# https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costanalysisoverview.htm
+
+allow group $GROUP to manage usage-reports in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+	any {
+		request.permission='USAGE_REPORT_INSPECT'
+	}
+}

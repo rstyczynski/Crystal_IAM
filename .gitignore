@@ -1,0 +1,7 @@
+
+.DS_Store
+data/~*.xlsx
+policy_generator.code-workspace
+tmp/*
+git.md
+

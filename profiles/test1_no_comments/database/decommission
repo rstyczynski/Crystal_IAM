@@ -1,0 +1,8 @@
+# https://docs.oracle.com/en/cloud/paas/base-database/iam-policy-details/index.html#GUID-630C92AC-7F6F-4BA9-840C-4806A3CCB601
+
+allow group $GROUP to manage database-family in $LOCATION
+where all {
+    request.permission!=/*_CREATE/,
+    request.permission!=/*_MOVE/,
+    request.permission!=/CLOUD_EXADATA_INFRASTRUCTURE_*/
+}

@@ -1,0 +1,10 @@
+# https://docs.oracle.com/en-us/iaas/security-zone/using/security-zone-iam-policies.htm
+
+allow group $GROUP to manage security-zone in $LOCATION
+where all {
+	any {
+		request.permission='SECURITY_ZONE_INSPECT',
+		request.permission='SECURITY_ZONE_READ',
+		request.permission='SECURITY_ZONE_UPDATE'
+	}
+}

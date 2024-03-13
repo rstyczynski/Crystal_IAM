@@ -1,0 +1,3 @@
+# https://docs.oracle.com/en-us/iaas/Content/network-firewall/iam-policy-reference.htm
+
+allow group $GROUP to inspect network-firewall-family in $LOCATION

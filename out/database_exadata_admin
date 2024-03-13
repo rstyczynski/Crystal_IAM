@@ -1,0 +1,5 @@
+
+allow group database_exadata_admin to manage cloud-exadata-infrastructures in compartment appgroup1:systems where request.permission!=/*_DELETE/ 
+allow group database_exadata_admin to manage cloud-exadata-infrastructures in compartment systems where request.permission!=/*_DELETE/ 
+allow group database_exadata_admin to manage tag-namespaces in tenancy where all { any { request.permission='TAG_NAMESPACE_INSPECT', request.permission='TAG_NAMESPACE_READ' }, target.tag-namespace.name='tag_cost-tracking' } 
+allow group database_exadata_admin to manage tag-namespaces in tenancy where all { any { request.permission='TAG_NAMESPACE_INSPECT', request.permission='TAG_NAMESPACE_READ' }, target.tag-namespace.name='tag_resource initial' } 

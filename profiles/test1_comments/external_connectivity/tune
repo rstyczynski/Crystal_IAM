@@ -1,0 +1,10 @@
+# https://docs.oracle.com/en/engineered-systems/exadata-cloud-service/ecscm/ecs-policy-details.html#GUID-A967AE72-E18C-40ED-A928-D865618E9B9E
+
+allow group $GROUP to manage virtual-network-family in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+    request.permission!=/*_CREATE/,
+    request.permission!=/*_DELETE/,
+    request.permission!=/*_MOVE/,
+    any {request.permission=/REMOTE_PEERING_CONNECTION_*/, request.permission=/REMOTE_PEERING_CONNECTION_CONNECT_TO_*/, request.permission=/REMOTE_PEERING_CONNECTION_CONNECT_FROM_*/}
+}

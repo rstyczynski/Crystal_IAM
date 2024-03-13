@@ -1,0 +1,3 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/apmpolicyreference.htm
+
+allow group $GROUP to manage apm-domains in $LOCATION

@@ -1,0 +1,6 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/corepolicyreference.htm
+
+allow group $GROUP to manage load_balancers in $LOCATION
+where all {
+    request.ad!='$COMMENT'
+}

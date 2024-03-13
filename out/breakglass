@@ -1,0 +1,2 @@
+allow group breakglass to manage all-resources in tenancy 
+allow group breakglass to use cloud-shell in tenancy 

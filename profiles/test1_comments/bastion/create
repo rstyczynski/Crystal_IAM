@@ -1,0 +1,26 @@
+# https://docs.oracle.com/en-us/iaas/Content/Bastion/Reference/bastionpolicyreference.htm
+
+# NOTE: It's not clear why CREATE requires DELETE on network, 
+#       but w/o DELETE it was not possible to create the bastion
+allow group $GROUP to manage all-resources in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+	any {
+		request.permission='BASTION_INSPECT',
+		request.permission='BASTION_CREATE',
+		request.permission='VNIC_ATTACHMENT_READ', 
+		request.permission=/VNIC_*/,
+		request.permission=/PRIVATE_IP_*/,
+		request.permission=/VCN_*/, 
+		request.permission=/SUBNET_*/,
+		request.permission=/ROUTE_TABLE_*/, 
+		request.permission=/NETWORK_SECURITY_GROUP_*/, 
+		request.permission=/SECURITY_LIST_*/	
+	}
+}
+
+# Note: there must be a separarte bastion for each compartment
+allow group $GROUP to read instance-family in $LOCATION
+allow group $GROUP to read instance-agent-plugins in $LOCATION
+allow group $GROUP to inspect work-requests in $LOCATION
+

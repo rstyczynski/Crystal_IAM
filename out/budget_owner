@@ -1,0 +1,3 @@
+
+allow group budget_owner to manage quota in tenancy where all { any { request.permission='QUOTA_INSPECT', request.permission='QUOTA_READ' } } 
+allow group budget_owner to manage usage-budgets in tenancy where all { any { request.permission='USAGE_BUDGET_INSPECT', request.permission='USAGE_BUDGET_READ' } } 

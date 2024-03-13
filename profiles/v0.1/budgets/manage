@@ -1,0 +1,3 @@
+# https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/budgetsoverview.htm
+
+allow group $GROUP to manage usage-budgets in $LOCATION

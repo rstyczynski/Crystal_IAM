@@ -1,0 +1,3 @@
+# https://docs.oracle.com/en-us/iaas/Content/Dashboards/Reference/dashboardspolicyreference.htm
+
+allow group $GROUP to manage dashboards-family in $LOCATION

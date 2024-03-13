@@ -1,0 +1,9 @@
+# https://docs.oracle.com/en/engineered-systems/exadata-cloud-service/ecscm/ecs-policy-details.html#GUID-A967AE72-E18C-40ED-A928-D865618E9B9E
+
+allow group $GROUP to manage virtual-network-family in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+    request.permission!=/*_DELETE/,
+    request.permission!=/*_MOVE/,
+    any {request.permission=/VIRTUAL_CIRCUIT_*/, request.permission=/CROSS_CONNECT_*/, request.permission=/CROSS_CONNECT_GROUP_*/, request.permission=/IPSEC_CONNECTION_*/, request.permission=/IPSEC_CONNECTION_DEVICE_CONFIG_*/, request.permission=/CPE_*/}
+}

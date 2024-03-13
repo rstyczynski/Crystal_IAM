@@ -1,0 +1,6 @@
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/logging-analytics/doc/iam-policies-catalog-logging-analytics.html
+
+allow group $GROUP to manage loganalytics-resources-family in $LOCATION
+where all {
+    request.permission=/*_MOVE/
+}

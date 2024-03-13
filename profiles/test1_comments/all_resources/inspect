@@ -1,0 +1,21 @@
+# inspect access to full $LOCATION
+# After: https://github.com/oracle-quickstart/oci-cis-landingzone-quickstart/blob/main/pre-config/lz_groups_policies.tf
+
+allow group $GROUP to inspect all-resources in $LOCATION
+where request.ad!='$COMMENT'
+allow group $GROUP to read instances in $LOCATION
+allow group $GROUP to read load-balancers in $LOCATION
+allow group $GROUP to read buckets in $LOCATION 
+allow group $GROUP to read nat-gateways in $LOCATION
+allow group $GROUP to read public-ips in $LOCATION
+allow group $GROUP to read file-family in $LOCATION
+allow group $GROUP to read instance-configurations in $LOCATION
+allow group $GROUP to read network-security-groups in $LOCATION
+allow group $GROUP to read resource-availability in $LOCATION
+allow group $GROUP to read audit-events in $LOCATION
+allow group $GROUP to read users in $LOCATION
+allow group $GROUP to read vss-family in $LOCATION
+allow group $GROUP to read usage-budgets in $LOCATION
+allow group $GROUP to read usage-reports in $LOCATION                        
+allow group $GROUP to read data-safe-family in $LOCATION
+allow group $GROUP to use cloud-shell in $LOCATION

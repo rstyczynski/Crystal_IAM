@@ -1,0 +1,10 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/keypolicyreference.htm#Details_for_the_Vault_Service
+
+allow group $GROUP to manage key-family in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+    request.permission!=/*_DELETE/,
+    request.permission!=/*_MOVE/,
+    request.permission!=/*_BACKUP/,
+    request.permission!=/*_REPLICATE/
+}

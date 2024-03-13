@@ -1,0 +1,3 @@
+
+allow group public_connectivity_operator to inspect network-firewall-family in compartment meet-me-room 
+allow group public_connectivity_operator to inspect virtual-network-family in compartment meet-me-room where all { any {request.permission=/NAT_GATEWAY_*/, request.permission=/INTERNET_GATEWAY_*/, request.permission=/SERVICE_GATEWAY_*/, request.permission=/PUBLIC_IP_POOL_*/, request.permission=/PUBLIC_IP_*/, request.permission=/BYOIP_RANGE_*/, request.permission=/IPV6_*/} } 

@@ -1,0 +1,10 @@
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Identity/policyreference/iampolicyreference.htm#top
+
+allow group $GROUP to manage tag-defaults in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+	any {
+		request.permission='TAG_DEFAULT_INSPECT',
+		request.permission='TAG_DEFAULT_READ'
+	}
+}

@@ -1,0 +1,4 @@
+# access to full tenancy
+allow group $GROUP to manage all-resources in $LOCATION
+where request.permission!=/*_DELETE/
+

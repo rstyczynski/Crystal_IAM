@@ -1,0 +1,3 @@
+
+allow group remote_access to manage bastion-family in compartment security where all { any { request.permission='BASTION_INSPECT', request.permission='BASTION_READ' } } 
+allow group remote_access to manage bastion-family in compartment security where all { any { request.permission='BASTION_SESSION_INSPECT', request.permission='BASTION_SESSION_READ', request.permission='BASTION_USE' } } 

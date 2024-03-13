@@ -1,0 +1,18 @@
+
+allow group audit to inspect all-resources in tenancy 
+allow group audit to read audit-events in tenancy 
+allow group audit to read buckets in tenancy 
+allow group audit to read data-safe-family in tenancy 
+allow group audit to read file-family in tenancy 
+allow group audit to read instance-configurations in tenancy 
+allow group audit to read instances in tenancy 
+allow group audit to read load-balancers in tenancy 
+allow group audit to read nat-gateways in tenancy 
+allow group audit to read network-security-groups in tenancy 
+allow group audit to read public-ips in tenancy 
+allow group audit to read resource-availability in tenancy 
+allow group audit to read usage-budgets in tenancy 
+allow group audit to read usage-reports in tenancy 
+allow group audit to read users in tenancy 
+allow group audit to read vss-family in tenancy 
+allow group audit to use cloud-shell in tenancy 

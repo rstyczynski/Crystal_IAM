@@ -1,0 +1,2 @@
+
+allow group local_connectivity_admin to manage virtual-network-family in compartment meet-me-room where all { request.permission!=/*_DELETE/, any { request.permission=/VIRTUAL_CIRCUIT_*/, request.permission=/CROSS_CONNECT_*/, request.permission=/CROSS_CONNECT_GROUP_*/, request.permission=/IPSEC_CONNECTION_*/, request.permission=/IPSEC_CONNECTION_DEVICE_CONFIG_*/, request.permission=/CPE_*/ } } 

@@ -1,0 +1,3 @@
+ where all {
+    request.permission=/*_MOVE/
+}

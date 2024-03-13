@@ -1,0 +1,6 @@
+# https://docs.oracle.com/en-us/iaas/Content/Logging/Task/managinglogs.htm
+
+allow group $GROUP to use log-group in $LOCATION
+where all {
+    request.ad!='$COMMENT'
+}

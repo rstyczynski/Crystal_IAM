@@ -1,0 +1,3 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/certificatespolicyreference.htm
+
+allow group $GROUP to manage cloud-guard-family in $LOCATION

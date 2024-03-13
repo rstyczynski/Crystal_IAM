@@ -1,0 +1,10 @@
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Identity/policyreference/iampolicyreference.htm#top
+
+allow group $GROUP to manage tag-namespaces in $LOCATION
+where all {
+	any {
+		request.permission='TAG_NAMESPACE_INSPECT',
+		request.permission='TAG_NAMESPACE_DELETE'
+	},
+	target.tag-namespace.name='$RESOURCE_P1'
+}

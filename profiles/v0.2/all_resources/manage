@@ -1,0 +1,5 @@
+# access to full tenancy
+    # comment after spaces
+          # comment after tabs
+# URL: http://TODO
+allow group $GROUP to manage all-resources in $LOCATION

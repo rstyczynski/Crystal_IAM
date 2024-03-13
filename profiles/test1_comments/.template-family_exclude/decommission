@@ -1,0 +1,9 @@
+# $URL
+
+allow group $GROUP to manage $RESOURCE_AIM in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+    request.permission!=/*_CREATE/,
+    request.permission!=/*_MOVE/,
+    $SNIPPET_RESOURCES
+}

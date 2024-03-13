@@ -1,0 +1,5 @@
+
+allow group database_operator to manage autonomous-database-family in compartment appgroup1:systems where all { any { request.permission='AUTONOMOUS_DATABASE_INSPECT', request.permission='AUTONOMOUS_DATABASE_READ' } } 
+allow group database_operator to manage autonomous-database-family in compartment systems where all { any { request.permission='AUTONOMOUS_DATABASE_INSPECT', request.permission='AUTONOMOUS_DATABASE_READ' } } 
+allow group database_operator to use database-family in compartment appgroup1:systems where all { request.permission!=/CLOUD_EXADATA_INFRASTRUCTURE_*/ } 
+allow group database_operator to use database-family in compartment systems where all { request.permission!=/CLOUD_EXADATA_INFRASTRUCTURE_*/ } 

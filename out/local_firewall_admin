@@ -1,0 +1,2 @@
+
+allow group local_firewall_admin to manage virtual-network-family in compartment network where all { request.permission!=/*_DELETE/, any { request.permission=/NETWORK-SECURITY-GROUP_*/, request.permission=/SECURITY-LIST_*/ } } 

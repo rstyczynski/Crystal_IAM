@@ -1,0 +1,6 @@
+# https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/Reference/cloudadvisorpolicyreference.htm
+
+allow group $GROUP to inspect optimizer-api-family in $LOCATION
+where all {
+    request.ad!='$COMMENT'
+}

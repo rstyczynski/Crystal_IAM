@@ -1,0 +1,6 @@
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Identity/policyreference/iampolicyreference.htm#top
+
+allow group $GROUP to use all-resources in $LOCATION
+where all {
+    any {request.permission=/TAG_DEFAULT_*/, request.permission=/TAG_NAMESPACE_*/}
+}

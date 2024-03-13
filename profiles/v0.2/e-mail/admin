@@ -1,0 +1,5 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/emailpolicyreference.htm
+
+allow group $GROUP to manage email-family in $LOCATION
+where request.permission!=/*_DELETE/
+

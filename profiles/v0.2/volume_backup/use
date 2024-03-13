@@ -1,0 +1,8 @@
+allow group $GROUP to manage volume-family in $LOCATION
+where
+all {
+	any {
+		request.permission='VOLUME_BACKUP_INSPECT'
+	}
+}
+

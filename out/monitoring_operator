@@ -1,0 +1,40 @@
+
+allow group monitoring_operator to inspect all-resources in compartment monitoring where all { any {request.permission=/ALARM_*/, request.permission=/METRIC_*/} } 
+allow group monitoring_operator to inspect certificate-authority-family in compartment security 
+allow group monitoring_operator to inspect cluster-family in compartment appgroup1:systems 
+allow group monitoring_operator to inspect cluster-family in compartment systems 
+allow group monitoring_operator to inspect dashboards-family in compartment monitoring 
+allow group monitoring_operator to inspect database-family in compartment appgroup1:systems where all { request.permission!=/CLOUD_EXADATA_INFRASTRUCTURE_*/ } 
+allow group monitoring_operator to inspect database-family in compartment systems where all { request.permission!=/CLOUD_EXADATA_INFRASTRUCTURE_*/ } 
+allow group monitoring_operator to inspect dns in compartment network 
+allow group monitoring_operator to inspect email-family in compartment network 
+allow group monitoring_operator to inspect file-family in compartment appgroup1:storage 
+allow group monitoring_operator to inspect file-family in compartment storage 
+allow group monitoring_operator to inspect instance-family in compartment appgroup1:systems 
+allow group monitoring_operator to inspect instance-family in compartment systems 
+allow group monitoring_operator to inspect object-family in compartment appgroup1:storage 
+allow group monitoring_operator to inspect object-family in compartment governance 
+allow group monitoring_operator to inspect object-family in compartment security 
+allow group monitoring_operator to inspect object-family in compartment storage 
+allow group monitoring_operator to inspect ons-family in compartment monitoring 
+allow group monitoring_operator to inspect ons-family in compartment security 
+allow group monitoring_operator to inspect vaults in compartment security 
+allow group monitoring_operator to inspect virtual-network-family in compartment meet-me-room where all { any {request.permission=/NAT_GATEWAY_*/, request.permission=/INTERNET_GATEWAY_*/, request.permission=/SERVICE_GATEWAY_*/, request.permission=/PUBLIC_IP_POOL_*/, request.permission=/PUBLIC_IP_*/, request.permission=/BYOIP_RANGE_*/, request.permission=/IPV6_*/} } 
+allow group monitoring_operator to inspect virtual-network-family in compartment meet-me-room where all { any {request.permission=/REMOTE_PEERING_CONNECTION_*/, request.permission=/REMOTE_PEERING_CONNECTION_CONNECT_TO_*/, request.permission=/REMOTE_PEERING_CONNECTION_CONNECT_FROM_*/} } 
+allow group monitoring_operator to inspect virtual-network-family in compartment meet-me-room where all { any {request.permission=/VIRTUAL_CIRCUIT_*/, request.permission=/CROSS_CONNECT_*/, request.permission=/CROSS_CONNECT_GROUP_*/, request.permission=/IPSEC_CONNECTION_*/, request.permission=/IPSEC_CONNECTION_DEVICE_CONFIG_*/, request.permission=/CPE_*/} } 
+allow group monitoring_operator to inspect virtual-network-family in compartment network where all { any {request.permission=/LOCAL_PEERING_GATEWAY_*/, request.permission=/LOCAL_PEERING_GATEWAY_CONNECT_FROM_*/, request.permission=/LOCAL_PEERING_GATEWAY_CONNECT_TO_*/} } 
+allow group monitoring_operator to inspect virtual-network-family in compartment network where all { any {request.permission=/NETWORK-SECURITY-GROUP_*/, request.permission=/SECURITY-LIST_*/} } 
+allow group monitoring_operator to inspect virtual-network-family in compartment network where all { any {request.permission=/VCN_*/, request.permission=/SUBNET_*/, request.permission=/DHCP_*/, request.permission=/VNIC_ATTACHMENT_*/, request.permission=/VNIC_*/, request.permission=/PRIVATE_IP_*/} } 
+allow group monitoring_operator to manage alarms in compartment monitoring where all { any { request.permission='ALARM_INSPECT' } } 
+allow group monitoring_operator to manage autonomous-database-family in compartment appgroup1:systems where all { any { request.permission='AUTONOMOUS_DATABASE_INSPECT' } } 
+allow group monitoring_operator to manage autonomous-database-family in compartment systems where all { any { request.permission='AUTONOMOUS_DATABASE_INSPECT' } } 
+allow group monitoring_operator to manage bastion-family in compartment security where all { any { request.permission='BASTION_INSPECT' } } 
+allow group monitoring_operator to manage bastion-family in compartment security where all { any { request.permission='BASTION_SESSION_INSPECT', request.permission='BASTION_USE' } } 
+allow group monitoring_operator to manage cloud-exadata-infrastructures in compartment appgroup1:systems where all { any { request.permission='CLOUD_EXADATA_INFRASTRUCTURE_INSPECT' } } 
+allow group monitoring_operator to manage cloud-exadata-infrastructures in compartment systems where all { any { request.permission='CLOUD_EXADATA_INFRASTRUCTURE_INSPECT' } } 
+allow group monitoring_operator to manage cloudevents-rules in compartment security where all { any { request.permission='EVENTRULE_LIST' } } 
+allow group monitoring_operator to manage load_balancers in compartment network where all { any { request.permission='LOAD_BALANCER_INSPECT' } } 
+allow group monitoring_operator to manage volume-family in compartment appgroup1:storage where all { any { request.permission='VOLUME_BACKUP_INSPECT' } } 
+allow group monitoring_operator to manage volume-family in compartment appgroup1:storage where all { any { request.permission='VOLUME_INSPECT' } } 
+allow group monitoring_operator to manage volume-family in compartment storage where all { any { request.permission='VOLUME_BACKUP_INSPECT' } } 
+allow group monitoring_operator to manage volume-family in compartment storage where all { any { request.permission='VOLUME_INSPECT' } } 

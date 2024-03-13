@@ -1,0 +1,4 @@
+# https://docs.oracle.com/en-us/iaas/Content/Logging/Task/managinglogs.htm
+
+allow group $GROUP to manage log-group in $LOCATION
+ where request.permission!=/*_DELETE/

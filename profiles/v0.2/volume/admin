@@ -1,0 +1,2 @@
+allow group $GROUP to manage volume-family in $LOCATION
+where request.permission!=/*_DELETE/

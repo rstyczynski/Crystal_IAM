@@ -1,0 +1,10 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/cloudeventspolicyreference.htm
+
+allow group $GROUP to manage cloudevents-rules in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+	any {
+		request.permission='EVENTRULE_LIST',
+		request.permission='EVENTRULE_CREATE'
+	}
+}

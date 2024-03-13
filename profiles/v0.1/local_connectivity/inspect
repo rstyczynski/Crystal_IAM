@@ -1,0 +1,6 @@
+# https://docs.oracle.com/en/engineered-systems/exadata-cloud-service/ecscm/ecs-policy-details.html#GUID-A967AE72-E18C-40ED-A928-D865618E9B9E
+
+allow group $GROUP to inspect virtual-network-family in $LOCATION
+where all {
+    any {request.permission=/LOCAL_PEERING_GATEWAY_*/, request.permission=/LOCAL_PEERING_GATEWAY_CONNECT_FROM_*/, request.permission=/LOCAL_PEERING_GATEWAY_CONNECT_TO_*/}
+}

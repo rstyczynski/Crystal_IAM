@@ -1,0 +1,9 @@
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Identity/policyreference/iampolicyreference.htm#top
+
+allow group $GROUP to manage all-resources in $LOCATION
+where all {
+    request.ad!='$COMMENT',
+    request.permission!=/*_DELETE/,
+    request.permission!=/*_MOVE/,
+    any {request.permission=/GROUP_*/, request.permission=/DYNAMIC_GROUP_*/, request.permission=/NETWORK_SOURCE_*/, request.permission=/POLICY_*/, request.permission=/CREDENTIAL_*/}
+}

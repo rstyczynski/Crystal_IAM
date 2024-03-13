@@ -1,0 +1,4 @@
+# https://docs.oracle.com/en-us/iaas/Content/Quotas/Concepts/resourcequotas_authentication_and_authorization.htm
+
+allow group $GROUP to manage quota in $LOCATION
+where request.permission!=/*_DELETE/

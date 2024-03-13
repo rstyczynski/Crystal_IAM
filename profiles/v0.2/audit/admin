@@ -1,0 +1,4 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/auditpolicyreference.htm
+
+allow group $GROUP to manage audit-events in $LOCATION
+where request.permission!=/*_DELETE/

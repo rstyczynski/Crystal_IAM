@@ -1,0 +1,3 @@
+# https://docs.oracle.com/en-us/iaas/Content/Logging/Task/managinglogs.htm
+
+allow group $GROUP to manage unified-configuration in $LOCATION

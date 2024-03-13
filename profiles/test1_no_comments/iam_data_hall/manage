@@ -1,0 +1,6 @@
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Identity/policyreference/iampolicyreference.htm#top
+
+allow group $GROUP to manage all-resources in $LOCATION
+where all {
+    any {request.permission=/TENANCY_*/, request.permission=/COMPARTMENT_*/}
+}

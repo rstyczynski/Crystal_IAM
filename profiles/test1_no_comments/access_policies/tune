@@ -1,0 +1,9 @@
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Identity/policyreference/iampolicyreference.htm#top
+
+allow group $GROUP to manage policies in $LOCATION
+where all {
+	any {
+		request.permission='POLICY_READ',
+		request.permission='POLICY_UPDATE'
+	}
+}

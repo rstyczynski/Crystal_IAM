@@ -1,0 +1,6 @@
+# https://docs.oracle.com/en-us/iaas/Content/Dashboards/Reference/dashboardspolicyreference.htm
+
+allow group $GROUP to use dashboards-family in $LOCATION
+where all {
+    request.ad!='$COMMENT'
+}

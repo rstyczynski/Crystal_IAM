@@ -1,0 +1,6 @@
+# https://docs.oracle.com/en/engineered-systems/exadata-cloud-service/ecscm/ecs-policy-details.html#GUID-A967AE72-E18C-40ED-A928-D865618E9B9E
+
+allow group $GROUP to read virtual-network-family in $LOCATION
+where all {
+    any {request.permission=/NAT_GATEWAY_*/, request.permission=/INTERNET_GATEWAY_*/, request.permission=/SERVICE_GATEWAY_*/, request.permission=/PUBLIC_IP_POOL_*/, request.permission=/PUBLIC_IP_*/, request.permission=/BYOIP_RANGE_*/, request.permission=/IPV6_*/}
+}

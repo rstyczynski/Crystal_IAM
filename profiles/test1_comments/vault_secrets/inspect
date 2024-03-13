@@ -1,0 +1,6 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/keypolicyreference.htm#Details_for_the_Vault_Service
+
+allow group $GROUP to inspect secret-family in $LOCATION
+where all {
+    request.ad!='$COMMENT'
+}

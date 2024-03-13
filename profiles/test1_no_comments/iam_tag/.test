@@ -1,0 +1,5 @@
+allow group ryszard-admins to inspect all-resources in tenancy
+where all {
+    request.ad!='xx',
+    any {request.permission=/TAG_DEFAULT_*/, request.permission=/TAG_NAMESPACE_*/}
+}

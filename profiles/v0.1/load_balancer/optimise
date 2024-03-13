@@ -1,0 +1,9 @@
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/corepolicyreference.htm
+
+allow group $GROUP to manage load_balancers in $LOCATION
+where all {
+	any {
+		request.permission='LOAD_BALANCER_INSPECT',
+		request.permission='LOAD_BALANCER_UPDATE'
+	}
+}

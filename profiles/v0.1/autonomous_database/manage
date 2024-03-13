@@ -1,0 +1,3 @@
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Identity/policyreference/adbpolicyreference.htm#Policy_Details_for_Autonomous_Database
+
+allow group $GROUP to manage autonomous-database-family in $LOCATION
