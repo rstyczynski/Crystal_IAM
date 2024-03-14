@@ -13,7 +13,7 @@ tx_id=$3
 : ${csv_quotation:='"'}
 : ${param_delim:="|"}
 
-: ${policy_out:=./out}
+: ${policy_out:=./out/$(date +%d%m%y_%H%M)}
 : ${tmp:=./tmp}
 
 privilege_clusters="COR C I R O U D M"
