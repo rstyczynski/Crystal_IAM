@@ -4,13 +4,17 @@ PT10|Policy statements required by services are available in templates
 
 # Modeling
 M10|Policy statements required by services are handled by the spreadsheet
++M20|Access policies are attached to compartments, if needed
 
 # Logic
 L10|Move bash code to proper style with command line arguments, error handling, etc.
++L20|Generated policies are written to timestamp directory under specified destination directory
++L30|Verify that provided privilege codes are correct
 
 # Done
-M20|Access policies are attached to compartments, if needed
-L20|Generated policies are written to timestamp directory under specified destination directory
++M20|Access policies are attached to compartments, if needed
++L20|Generated policies are written to timestamp directory under specified destination directory
++L30|Verify that provided privilege codes are correct
 
 # Implementation notes
 

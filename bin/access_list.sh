@@ -225,6 +225,16 @@ for access_group in $access_groups; do
             fi
         fi
 
+        # L30|Verify that provided privilege codes are correct
+        for (( i = 0; i < ${#privileges}; i++ )); do
+            privilege_code="${privileges:i:1}"
+
+            if [ $(decode_privilege_code $privilege_code) = unknown ]; then 
+                echo "Error. Unknown priviledge code: $privilege_code"
+                exit 1
+            fi
+        done
+
         # decode privileges
         unset privileges_set
         for privilege_cluster in $privilege_clusters; do
