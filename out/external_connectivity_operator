@@ -1,3 +1,0 @@
-
-allow group external_connectivity_operator to inspect network-firewall-family in compartment meet-me-room 
-allow group external_connectivity_operator to inspect virtual-network-family in compartment meet-me-room where all { any {request.permission=/REMOTE_PEERING_CONNECTION_*/, request.permission=/REMOTE_PEERING_CONNECTION_CONNECT_TO_*/, request.permission=/REMOTE_PEERING_CONNECTION_CONNECT_FROM_*/} } 

@@ -1,3 +1,0 @@
-
-allow group cost_data_integrator to inspect object-family in compartment governance 
-allow group cost_data_integrator to use object-family in compartment governance 

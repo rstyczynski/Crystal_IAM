@@ -1,2 +1,0 @@
-
-allow group audit_data_integrator to use object-family in compartment security 

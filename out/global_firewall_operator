@@ -1,2 +1,0 @@
-
-allow group global_firewall_operator to inspect network-firewall-family in compartment meet-me-room 

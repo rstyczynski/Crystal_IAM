@@ -1,2 +1,0 @@
-
-allow group global_firewall_admin to manage network-firewall-family in compartment meet-me-room where request.permission!=/*_DELETE/ 

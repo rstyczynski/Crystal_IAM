@@ -1,4 +1,0 @@
-
-allow group access_admin to manage all-resources in tenancy where all { request.permission!=/*_DELETE/, any { request.permission=/GROUP_*/, request.permission=/DYNAMIC_GROUP_*/, request.permission=/NETWORK_SOURCE_*/, request.permission=/POLICY_*/, request.permission=/CREDENTIAL_*/ } } 
-allow group access_admin to manage all-resources in tenancy where all { request.permission!=/*_DELETE/, any { request.permission=/TENANCY_*/, request.permission=/COMPARTMENT_*/ } } 
-allow group access_admin to manage tag-namespaces in tenancy where all { request.permission!=/*_DELETE/, any { request.permission='TAG_NAMESPACE_*' }, target.tag-namespace.name='tag_access_control' } 

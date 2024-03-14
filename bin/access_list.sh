@@ -67,12 +67,16 @@ echo "===================================="
 # access_groups=audit
 # access_groups=compliance_admin
 # access_groups=access_admin
+access_groups=compute_operator_appgrp1
 for access_group in $access_groups; do
     echo "=========== ACCESS GROUP ==========="
     echo $access_group
     echo "===================================="
 
     rm -f $tmp/$access_group.tmp
+
+    # M20|Access policies are attached to compartments, if needed
+    unset attached_at
 
     echo "cat $access_list | grep \"^$csv_quotation- $access_group$csv_quotation$csv_delim\""  
     cat $access_list | grep "^$csv_quotation\s*- $access_group$csv_quotation$csv_delim" | tr "$csv_delim" '\n'  > $tmp/priviliges.tmp
@@ -104,6 +108,17 @@ for access_group in $access_groups; do
         location="${location#"${location%%[![:space:]]*}"}"
         resource="${resource#"${resource%%[![:space:]]*}"}"
         privileges="${privileges#"${privileges%%[![:space:]]*}"}"
+
+        # M20|Access policies are attached to compartments, if needed
+        if [ "$location" == "attach at" ]; then
+            if [ -z "$privileges" ]; then
+                attached_at=tenancy
+            else
+                attached_at=$privileges
+            fi
+            echo "Info. Policy attached at $attached_at"
+            continue
+        fi
 
         # get parameters
 
@@ -170,15 +185,17 @@ for access_group in $access_groups; do
         # compartment or tenancy level policy?
         if [ "$location" == "tenancy" ]; then
             location="tenancy"
+        elif [ "$location" == "$attached_at" ]; then
+            location="compartment $compartment_pfx$location"
         else
             # add prefix before each compartment level
             unset location_full
             IFS=:
             for compartment in $location; do
                 if [ -z "$location_full" ]; then
-                    location_full=$location_pfx$compartment
+                    location_full=$compartment_pfx$compartment
                 else
-                    location_full=$location_full:$location_pfx$compartment
+                    location_full=$location_full:$compartment_pfx$compartment
                 fi
             done
             unset IFS
@@ -189,6 +206,17 @@ for access_group in $access_groups; do
         if [ -z "$privileges" ]; then
             echo "Warning: No priviliges defined for $resource"
             continue
+        fi
+
+        # M20|Access policies are attached to compartments, if needed
+        if [ ! "$attached_at" = tenancy ]; then
+            if expr "$location" : "compartment $compartment_pfx$attached_at.*"; then
+                # remove attached_at compartment from compartment path
+                location="compartment ${location#compartment $compartment_pfx$attached_at:}"
+            else
+                echo "Error. Access specified to resource not accesible from attachment point at: compartment $compartment_pfx$attached_at vs. $location".
+                exit 1
+            fi
         fi
 
         # decode privileges
@@ -287,12 +315,15 @@ for access_group in $access_groups; do
                 fi
             fi
 
+            # M20|Access policies are attached to compartments, if needed
+            mkdir -p $policy_out/$attached_at
+
             # process access policy file
             cat $tmp/$access_group.tmp |
             sed '/^$/d' | # remove empty lines
             sed 's/^[ ]*//' | # remove leading spaces
             sort -u | # remove duplicated policies
-            cat > $policy_out/$access_group
+            cat > $policy_out/$attached_at/$access_group
         done
     done < "$tmp/line.tmp"
 done

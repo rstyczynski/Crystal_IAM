@@ -94,7 +94,7 @@ Crystal@IAM comes with:
 
 To make it easy change directory to Crystal@IAM project directory.
 ```
-cd Crystal_AIM
+cd Crystal_IAM
 ```
 
 Look into one of already generated access policies
@@ -123,8 +123,8 @@ ls out
 Now you are ready to perform conversion of provided demo xls file, and generation of access policies. Note you need to install sscovert which comes with gnumeric package.
 
 ```
-ssconvert ./data/access_list_v5.xlsx ./tmp/access_list_v5.csv 
-./bin/access_list.sh ./tmp/access_list_v5.csv 
+ssconvert ./data/access_list_v6.xlsx ./tmp/access_list_v6.csv 
+./bin/access_list.sh ./tmp/access_list_v6.csv 
 ls out
 ```
 

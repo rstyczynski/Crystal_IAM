@@ -1,7 +1,0 @@
-
-allow group network_operator to inspect dns in compartment network 
-allow group network_operator to inspect email-family in compartment network 
-allow group network_operator to inspect virtual-network-family in compartment network where all { any {request.permission=/DRG_*/, request.permission=/ROUTE_TABLE_*/} } 
-allow group network_operator to inspect virtual-network-family in compartment network where all { any {request.permission=/NETWORK-SECURITY-GROUP_*/, request.permission=/SECURITY-LIST_*/} } 
-allow group network_operator to inspect virtual-network-family in compartment network where all { any {request.permission=/VCN_*/, request.permission=/SUBNET_*/, request.permission=/DHCP_*/, request.permission=/VNIC_ATTACHMENT_*/, request.permission=/VNIC_*/, request.permission=/PRIVATE_IP_*/} } 
-allow group network_operator to manage load_balancers in compartment network where all { any { request.permission='LOAD_BALANCER_INSPECT' } } 

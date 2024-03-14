@@ -1,8 +1,0 @@
-
-allow group compliance_operator to inspect all-resources in tenancy where all { any {request.permission=/DOMAIN_*/, request.permission=/IDENTITY_PROVIDER_*/, request.permission=/AUTHENTICATION_POLICY_*/, request.permission=/USER_*/ } } 
-allow group compliance_operator to manage tag-namespaces in tenancy where all { any { request.permission='TAG_NAMESPACE_INSPECT', request.permission='TAG_NAMESPACE_READ' }, target.tag-namespace.name='tag_access_control' } 
-allow group compliance_operator to use all-resources in tenancy where all { any {request.permission=/GROUP_*/, request.permission=/DYNAMIC_GROUP_*/, request.permission=/NETWORK_SOURCE_*/, request.permission=/POLICY_*/, request.permission=/CREDENTIAL_*/} } 
-allow group compliance_operator to use all-resources in tenancy where all { any {request.permission=/TENANCY_*/, request.permission=/COMPARTMENT_*/} } 
-allow group compliance_operator to use cloud-guard-family in tenancy 
-allow group compliance_operator to use cloud-shell in tenancy 
-allow group compliance_operator to use optimizer-api-family in tenancy 

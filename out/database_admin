@@ -1,7 +1,0 @@
-
-allow group database_admin to manage autonomous-database-family in compartment appgroup1:systems where request.permission!=/*_DELETE/ 
-allow group database_admin to manage autonomous-database-family in compartment systems where request.permission!=/*_DELETE/ 
-allow group database_admin to manage database-family in compartment appgroup1:systems where all { request.permission!=/CLOUD_EXADATA_INFRASTRUCTURE_*/ request.permission!=/*_DELETE/ } 
-allow group database_admin to manage database-family in compartment systems where all { request.permission!=/CLOUD_EXADATA_INFRASTRUCTURE_*/ request.permission!=/*_DELETE/ } 
-allow group database_admin to manage tag-namespaces in tenancy where all { any { request.permission='TAG_NAMESPACE_INSPECT', request.permission='TAG_NAMESPACE_READ' }, target.tag-namespace.name='tag_cost-tracking' } 
-allow group database_admin to manage tag-namespaces in tenancy where all { any { request.permission='TAG_NAMESPACE_INSPECT', request.permission='TAG_NAMESPACE_READ' }, target.tag-namespace.name='tag_resource initial' } 
