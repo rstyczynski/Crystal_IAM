@@ -13,7 +13,9 @@ M20|Access policies are attached to compartments, if needed
 L20|Generated policies are written to timestamp directory under specified destination directory
 
 # Implementation notes
-## M20
+
+## MM20|Access policies are attached to compartments, if needed
+
 ### Documentation
 https://docs.oracle.com/en-us/iaas/Content/Identity/policiesgs/overview_topic-Example_Scenario.htm#Example
 
@@ -29,3 +31,11 @@ attached_at - tenancy
 
 ### Errors
 10. location prefix does not match ${attached_at}, but permission is specified.
+
+## L20|Generated policies are written to timestamp directory under specified destination directory
+
+### Parameters 
+out_timestamp - controls is timestamp should be added
+
+### Default values
+out_timestamp - yes

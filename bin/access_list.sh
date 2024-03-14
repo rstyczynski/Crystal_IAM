@@ -13,8 +13,14 @@ tx_id=$3
 : ${csv_quotation:='"'}
 : ${param_delim:="|"}
 
-: ${policy_out:=./out/$(date +%d%m%y_%H%M)}
+: ${policy_out:=./out}
 : ${tmp:=./tmp}
+
+# L20|Generated policies are written to timestamp directory under specified destination directory
+: ${out_timestamp:=yes}
+if [ "$out_timestamp" = "yes" ]; then
+    policy_out=$policy_out/$(date +%d%m%y_%H%M)
+fi
 
 privilege_clusters="COR C I R O U D M"
 
