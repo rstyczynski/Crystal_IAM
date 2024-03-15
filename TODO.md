@@ -1,20 +1,23 @@
 
 # Policy templates
 PT10|Policy statements required by services are available in templates
+PT20|
 
 # Modeling
-M10|Policy statements required by services are handled by the spreadsheet
-+M20|Access policies are attached to compartments, if needed
+M30|
 
 # Logic
 L10|Move bash code to proper style with command line arguments, error handling, etc.
-+L20|Generated policies are written to timestamp directory under specified destination directory
-+L30|Verify that provided privilege codes are correct
+L40|
 
 # Done
-+M20|Access policies are attached to compartments, if needed
-+L20|Generated policies are written to timestamp directory under specified destination directory
-+L30|Verify that provided privilege codes are correct
+M20|Access policies are attached to compartments, if needed|Available from spreadsheet v6
+L20|Generated policies are written to timestamp directory under specified destination directory
+L30|Verify provided privilege codes
+
+# Rejected
+M10|Policy statements required by services are handled by the spreadsheet| No need do have it in spreadsheet. Each time resource is used tenancy level statements must be added.
+
 
 # Implementation notes
 

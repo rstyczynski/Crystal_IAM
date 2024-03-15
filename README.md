@@ -10,14 +10,17 @@
 * [Quick start](#quick-start)
 
 # Overview
-Crystal@IAM project simplifies OCI access controls configuration using Excel table as an configuration interface, where you mark OCI resources access level for specified user groups. Once completed access model is automatically converted to OCI access policies, by logic coded in a bash script.
+Crystal@IAM project simplifies OCI access controls configuration using Excel table as an configuration interface, where you mark OCI resources access level for specified user groups. Once completed access model is automatically converted to OCI access policies, by 350 lines long logic coded in a bash script, combining spreadsheet data with template policies prebuilt for OCI resources. 
+
+When proposed template scheme doe snot fit into your use case you can prepare your own profile. It's important that profiles may combine any number of atomic policy statements; you can even build your own resource group names - like OCI AIM families, what is already used to model e.g. internal and external network communication resources.
 
 Crystal@IAM project:
+- provides graphical interface to to map access groups to resources on desired compartment level
+- supports access policy attachment at desired level
+- gathers AIM level privileges into multi resource clusters to simplify modeling of resources 
 - maps user groups to resources with privileges specified on fine grained level
 - maps user groups to resources with privileges specified on clustered level
-- supports resources at the tenancy level
-- supports resources at the compartment level
-- supports up to four resource's parameters
+- supports up to four resource's parameters, to be used in templates
 
 # OCI access controls
 Oracle Cloud Infrastructure is equipped with state-of-the-art access control features. The organization of resources among tenancies and compartments is unique in the industry, enabling the virtual modeling of real-life data centers with features such as data halls, hardware cages, demarcation points, etc. Furthermore, sophisticated access control for special use cases can be achieved through tag-based access policies.
@@ -128,6 +131,34 @@ ssconvert ./data/access_list_v6.xlsx ./tmp/access_list_v6.csv
 ls out
 ```
 
+# How to use the spreadsheet
+The spreadsheet's rows represent business divisions and access groups. The access groups are always prefixed by a dash '-' and the business divisions serve as a logical grouping. You are free to add new rows using the regular spreadsheet's 'insert row' operation. Please ensure that new rows are always added above the one labeled '(new row? Always insert above this line)'.
+
+Columns represent OCI compartment, and resource. Notice notation with slash after compartment - it's a way to pass parameter to template engine. Not really used for locations, however useful for resources. Compartments use regular OCI notation with colon ':' to specify sub-compartment. Note that sub compartments are always provided from root, so in case of specifying special access to sub-compartments you must use colon notation.
+
+Resources are typically regular names of OCI resources, however actual name used in the spreadsheet is the name from profile/$version directory. Look into this directory to familiarize yourself with resource catalogue provided with used release of Crystal@AIM.
+
+Spreadsheet's cell crossing between access group and location / resource name is a place to specify access code. You may specify access letters as specified in the following table.
+
+| access | code | description |
+| -----  | ---- | ----------- |
+plan|P|authority to make decision about resource configuration	
+create|C|permission to create resource	
+use|U|permission to use the resource on control plane level. Does not cover TCP level exposed by the resource itself i.e. does not cover data plane permissions.	
+optimise|O|permission to tune resource on control plane level. Does not cover software level tunnelables exposed by the resource itself i.e. does not cover data plane tunning permissions.	
+retire|R|remove from use	
+decommission|D|permission to decommission resource on a control plane level. Does not cover data plane permissions related to protecting data kept by software behind there resource	
+inspect|I|permission to inspect state of the resource at control plane level. Does not cover access to business data handled by the resource.	
+manage|M|full permission to the resource and inner resources incl. delete. Should be used only by break glass roles.	
+
+You can specify any combination of above letters. Notice that this version of Crystal@AIM provides support of COR cluster, meaning administrator who can create, optimize, and retire, but cannot delete. Providing COR cluster makes it easy to model access statement, as it's not combined from three access templates, but admin one is used instead.
+
+At the bottom row, under space for access configuration, you see line with 'Missing privileges (Ctrl-S so see):' label, where missing privileges are listed. This is a support tool to spot potentially missing access rights. It may be not a problem to omit some access rights, as some use cases may be always supported by break-glass procedure, and this line aim to just help in access modeling.
+
+Attention! Do not modify rows above the header row. The logic assumes that the header starts at a specific row number and the data follows. While this is parameterized in the logic, there is no need to alter it.
+
+# How to model policy templates
+TODO
 
 # Author
 rstyczynski@gmail.com, https://github.com/rstyczynski/Crystal_IAM
