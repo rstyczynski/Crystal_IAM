@@ -4,7 +4,8 @@ PT10|Policy statements required by services are available in templates
 PT20|
 
 # Modeling
-M30|
+M30|Define grammar for Crystal@AIM policy statement (CPS). Having this spreadsheet will be converted to CPS, and logic will convert it to final statements using templates.
+M40|
 
 # Logic
 L10|Move bash code to proper style with command line arguments, error handling, etc.
@@ -46,3 +47,9 @@ out_timestamp - controls is timestamp should be added
 
 ### Default values
 out_timestamp - yes
+
+## M30|Define grammar for Crystal@AIM policy statement (CPS). Having this spreadsheet will be converted to CPS, and logic will convert it to final statements using templates.
+
+allow group network_admin to admin local_network in compartment network /*attach at network */
+
+allow group governance_admin to admin iam_tag-namespaces in tenancy having parameter1=abc

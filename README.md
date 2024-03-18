@@ -158,7 +158,90 @@ At the bottom row, under space for access configuration, you see line with 'Miss
 Attention! Do not modify rows above the header row. The logic assumes that the header starts at a specific row number and the data follows. While this is parameterized in the logic, there is no need to alter it.
 
 # How to model policy templates
+Crystal@AIM is based on trivial templates. Admin privileges for a file system looks the following:
+
+```
+cat ./profiles/v0.2/file_system/admin
+
+# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/filestoragepolicyreference.htm
+
+allow group $GROUP to manage file-family in $LOCATION
+where request.permission!=/*_DELETE/
+```
+
+As you see resource's actions are presented as regular IAM policy statements, with intended extra conditions and parameters. Above example use two basic parameters: group, and location. Notice one more extension - possibility add comments; comments are always single line.
+
+Each action may consist of multiple statements, what is different from regular IAM syntax. Good example of such complex policy is an OCI Bastion service. 
+
+```
+cat ./profiles/v0.2/file_system/admin/Users/rstyczynski/projects/Crystal_IAM/profiles/v0.2/bastion/create
+
+# https://docs.oracle.com/en-us/iaas/Content/Bastion/Reference/bastionpolicyreference.htm
+
+# NOTE: It's not clear why CREATE requires DELETE on network, 
+#       but w/o DELETE it was not possible to create the bastion
+allow group $GROUP to manage all-resources in $LOCATION
+where all {
+	any {
+		request.permission='BASTION_INSPECT',
+		request.permission='BASTION_CREATE',
+		request.permission='VNIC_ATTACHMENT_READ', 
+		request.permission=/VNIC_*/,
+		request.permission=/PRIVATE_IP_*/,
+		request.permission=/VCN_*/, 
+		request.permission=/SUBNET_*/,
+		request.permission=/ROUTE_TABLE_*/, 
+		request.permission=/NETWORK_SECURITY_GROUP_*/, 
+		request.permission=/SECURITY_LIST_*/	
+	}
+}
+
+# Note: there must be a separate bastion for each compartment
+allow group $GROUP to read instance-family in $LOCATION
+allow group $GROUP to read instance-agent-plugins in $LOCATION
+allow group $GROUP to inspect work-requests in $LOCATION
+```
+
+Templates support up to four resource level parameters. Note fixed name of the parameters.
+
+```
+cat ./profiles/v0.2/iam_tag_namespaces/admin
+
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Identity/policyreference/iampolicyreference.htm#top
+
+allow group $GROUP to manage tag-namespaces in $LOCATION
+where all {
+	request.permission!=/*_DELETE/,
+	any {
+		request.permission='TAG_NAMESPACE_*'
+	},
+	target.tag-namespace.name='$RESOURCE_P1'
+}
+```
+
+Some resources, by definition, do not have full list of permissions available. One of examples is Cloud Shell.
+
+```
+ls ./profiles/v0.2/cloud_shell
+admin.not_supported
+inspect.not_supported
+read.not_supported
+create.not_supported
+manage.not_supported
+retire.not_supported
+decommission.not_supported
+optimise.not_supported
+use
+```
+
+Each resource comes with (to be done) required tenancy level permissions as specified by OCI resource documentation. 
+
+```
 TODO
+```
+
+Resource templates are gathered together in a directory, which is a policy set name. Second level directory is a resource name, what you see from above examples.
+
 
 # Author
 rstyczynski@gmail.com, https://github.com/rstyczynski/Crystal_IAM

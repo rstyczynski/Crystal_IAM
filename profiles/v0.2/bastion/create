@@ -18,7 +18,7 @@ where all {
 	}
 }
 
-# Note: there must be a separarte bastion for each compartment
+# Note: there must be a separate bastion for each compartment
 allow group $GROUP to read instance-family in $LOCATION
 allow group $GROUP to read instance-agent-plugins in $LOCATION
 allow group $GROUP to inspect work-requests in $LOCATION
