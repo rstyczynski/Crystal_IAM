@@ -12,9 +12,11 @@
 * [How to model policy templates](#how-to-model-policy-templates)
 
 # Overview
-Crystal@IAM project simplifies OCI access controls configuration using Excel table as an configuration interface, where you mark OCI resources access level for specified user groups. Once completed access model is automatically converted to OCI access policies, by 350 lines long logic coded in a bash script, combining spreadsheet data with template policies prebuilt for OCI resources. 
+Crystal@IAM project simplifies OCI access controls configuration using Excel table as an configuration interface, where you mark OCI resources access level for specified user groups at specified compartment. Once completed the access model is automatically converted to OCI access policies, by 350 lines long logic coded in a bash script. The outcome of combining spreadsheet data with, prebuilt for each OCI resource, template policies is set of an OCI access policies. 
 
-When proposed template scheme doe snot fit into your use case you can prepare your own profile. It's important that profiles may combine any number of atomic policy statements; you can even build your own resource group names - like OCI AIM families, what is already used to model e.g. internal and external network communication resources.
+You are free to build your own profile with templates, when proposed template scheme does not fit into your use case.
+
+Crystal@IAM give you freedom to combine any number of atomic policy statements in each template; you can even build your own resource group names - like OCI AIM families e.g. to model access to internal and external network communication resources.
 
 Crystal@IAM project:
 - provides graphical interface to to map access groups to resources on desired compartment level
