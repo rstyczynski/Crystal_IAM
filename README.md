@@ -121,25 +121,43 @@ Now you know how resource access statements templates are combined into the fina
 
 Now perform conversion of already available demo csv file. It will take some time.
 ```
-./bin/access_list.sh ./data/access_list_v5.csv 
-ls out
+export out_timestamp=no
+./bin/ciam.sh ./data/ciam_model_v6.csv 
+ls policies
 ```
 
 Now you are ready to perform conversion of provided demo xls file, and generation of access policies. Note you need to install sscovert which comes with gnumeric package.
 
 ```
-ssconvert ./data/access_list_v6.xlsx ./tmp/access_list_v6.csv 
-./bin/access_list.sh ./tmp/access_list_v6.csv 
-ls out
+export out_timestamp=no
+ssconvert ./data/ciam_model_v6.xlsx ./tmp/ciam_model_v6.csv 
+./bin/ciam.sh ./tmp/ciam_model_v6.csv 
+ls policies
 ```
 
 # How to use the spreadsheet
 The spreadsheet's rows represent business divisions and access groups. The access groups are always prefixed by a dash '-' and the business divisions serve as a logical grouping. You are free to add new rows using the regular spreadsheet's 'insert row' operation. Please ensure that new rows are always added above the one labeled '(new row? Always insert above this line)'.
 
-Columns represent OCI compartment, and resource. Notice notation with slash after compartment - it's a way to pass parameter to template engine. Not really used for locations, however useful for resources. Compartments use regular OCI notation with colon ':' to specify sub-compartment. Note that sub compartments are always provided from root, so in case of specifying special access to sub-compartments you must use colon notation.
+## location
+Columns represent OCI compartment, and resource. Notice notation with slash after compartment - it's a way to pass parameter to template engine. Not really used for locations, however useful for resources. Compartments use regular OCI notation with colon ':' to specify sub-compartment. 
 
-Resources are typically regular names of OCI resources, however actual name used in the spreadsheet is the name from profile/$version directory. Look into this directory to familiarize yourself with resource catalogue provided with used release of Crystal@AIM.
+Note that sub compartments are always provided from root, so in case of specifying special access to sub-compartments you must use colon notation.
 
+## policy attachment
+OCI access policy may be attached at any compartment. It's an interesting feature as it creates possibility to establish autonomic compartments with ability to manage local policies. Crystal@IAM supports policy attachment by exposing attach at compartment column in the spreadsheet. 
+
+Notice that the same policy may be attached at tenancy or other compartment. Spreadsheet requires you to provide each 'location' using a full path from root. Such full location will be cut into the proper format once other compartment is specified as an attachment point.
+
+## resource
+Resources are typically regular names of OCI resources, however actual name used in the spreadsheet is the name from profile/$version directory. Look into this directory to familiarize yourself with resource catalogue provided with used release of Crystal@AIM. 
+
+Resource may be provided with up to four parameters, which are specified after '/' and separated by '|'. Below example specifies access to tag_cost-tracking tag namespace.
+
+```
+iam_tag_namespaces / tag_cost-tracking
+```
+
+## access rights
 Spreadsheet's cell crossing between access group and location / resource name is a place to specify access code. You may specify access letters as specified in the following table.
 
 | access | code | description |
@@ -155,8 +173,10 @@ manage|M|full permission to the resource and inner resources incl. delete. Shoul
 
 You can specify any combination of above letters. Notice that this version of Crystal@AIM provides support of COR cluster, meaning administrator who can create, optimize, and retire, but cannot delete. Providing COR cluster makes it easy to model access statement, as it's not combined from three access templates, but admin one is used instead.
 
+## access coverage helper
 At the bottom row, under space for access configuration, you see line with 'Missing privileges (Ctrl-S so see):' label, where missing privileges are listed. This is a support tool to spot potentially missing access rights. It may be not a problem to omit some access rights, as some use cases may be always supported by break-glass procedure, and this line aim to just help in access modeling.
 
+## header rows
 Attention! Do not modify rows above the header row. The logic assumes that the header starts at a specific row number and the data follows. While this is parameterized in the logic, there is no need to alter it.
 
 # How to model policy templates
@@ -204,7 +224,7 @@ allow group $GROUP to read instance-agent-plugins in $LOCATION
 allow group $GROUP to inspect work-requests in $LOCATION
 ```
 
-Templates support up to four resource level parameters. Note fixed name of the parameters.
+Templates support up to four resource level parameters. Note the fixed name of the parameters.
 
 ```
 cat ./profiles/v0.2/iam_tag_namespaces/admin
@@ -243,6 +263,18 @@ TODO
 ```
 
 Resource templates are gathered together in a directory, which is a policy set name. Second level directory is a resource name, what you see from above examples.
+
+## template parameters
+Parameters is the templates are always provided as uppercase with $ sign at the beginning. 
+
+| parameter | description |
+| ----- | ----------- |
+|$GROUP|IAM access group name |
+|$LOCATION|location provided as tenancy or compartment|
+|$RESOURCE_P1|resource's 1st parameter|
+|$RESOURCE_P2|resource's 2nd parameter|
+|$RESOURCE_P3|resource's 3rd parameter|
+|$RESOURCE_P4|resource's 4th parameter|
 
 
 # Author

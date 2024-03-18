@@ -1,8 +1,6 @@
-
 .DS_Store
 tmp/*
 data/~*.xlsx
-out/*
+policies/*
 policy_generator.code-workspace
 git.md
-

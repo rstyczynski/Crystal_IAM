@@ -1,6 +1,6 @@
 #!/bin/bash
 
-access_list=$1
+ciam_model=$1
 policy_profile_name=$2
 tx_id=$3
 
@@ -13,7 +13,7 @@ tx_id=$3
 : ${csv_quotation:='"'}
 : ${param_delim:="|"}
 
-: ${policy_out:=./out}
+: ${policy_out:=./policies}
 : ${tmp:=./tmp}
 
 # L20|Generated policies are written to timestamp directory under specified destination directory
@@ -34,17 +34,6 @@ access_groups_column=1
 mkdir -p $tmp
 mkdir -p $policy_out
 
-# decode_privilege_code() {
-#     case $1 in
-#         C) echo "create" ;;
-#         U) echo "use" ;;
-#         T) echo "tune" ;;
-#         D) echo "decommission" ;;
-#         I) echo "inspect" ;;
-#         M) echo "manage" ;;
-#         *) echo "unknown" ;;
-#     esac
-# }
 decode_privilege_code() {
     case $1 in
         COR) echo "admin" ;;
@@ -60,10 +49,10 @@ decode_privilege_code() {
     esac
 }
 
-cat $access_list | head -$location_row | tail -1 | tr "$csv_delim" '\n' > $tmp/location.tmp
-cat $access_list | head -$resource_row | tail -1 | tr "$csv_delim" '\n' > $tmp/resource.tmp
+cat $ciam_model | head -$location_row | tail -1 | tr "$csv_delim" '\n' > $tmp/location.tmp
+cat $ciam_model | head -$resource_row | tail -1 | tr "$csv_delim" '\n' > $tmp/resource.tmp
 
-access_groups=$(cat $access_list | grep "^$csv_quotation-" | cut -d "$csv_delim" -f$access_groups_column | sed 's/- //g' | tr -d "$csv_quotation")
+access_groups=$(cat $ciam_model | grep "^$csv_quotation-" | cut -d "$csv_delim" -f$access_groups_column | sed 's/- //g' | tr -d "$csv_quotation")
 
 echo "=========== ACCESS GROUPS =========="
 echo $access_groups
@@ -84,8 +73,8 @@ for access_group in $access_groups; do
     # M20|Access policies are attached to compartments, if needed
     unset attached_at
 
-    echo "cat $access_list | grep \"^$csv_quotation- $access_group$csv_quotation$csv_delim\""  
-    cat $access_list | grep "^$csv_quotation\s*- $access_group$csv_quotation$csv_delim" | tr "$csv_delim" '\n'  > $tmp/priviliges.tmp
+    echo "cat $ciam_model | grep \"^$csv_quotation- $access_group$csv_quotation$csv_delim\""  
+    cat $ciam_model | grep "^$csv_quotation\s*- $access_group$csv_quotation$csv_delim" | tr "$csv_delim" '\n'  > $tmp/priviliges.tmp
     
     paste -d, $tmp/location.tmp $tmp/resource.tmp $tmp/priviliges.tmp | grep -v 'Team,team,' > $tmp/line.tmp
 
@@ -343,6 +332,8 @@ for access_group in $access_groups; do
         done
     done < "$tmp/line.tmp"
 done
+
+echo $policy_out/$attached_at/$access_group
 
 rm -f $tmp/*.tmp
 echo "Completed."
