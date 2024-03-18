@@ -8,6 +8,8 @@
 * [Features](#features)
 * [Tools](#tools)
 * [Quick start](#quick-start)
+* [How to use the spreadsheet](#wow-to-use-the-spreadsheet)
+* [How to model policy templates](#how-to-model-policy-templates)
 
 # Overview
 Crystal@IAM project simplifies OCI access controls configuration using Excel table as an configuration interface, where you mark OCI resources access level for specified user groups. Once completed access model is automatically converted to OCI access policies, by 350 lines long logic coded in a bash script, combining spreadsheet data with template policies prebuilt for OCI resources. 
