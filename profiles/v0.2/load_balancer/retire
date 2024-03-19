@@ -1,6 +1,6 @@
 # https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/corepolicyreference.htm
 
-allow group $GROUP to manage load_balancers in $LOCATION
+allow group $GROUP to manage load-balancers in $LOCATION
  where all {
     request.permission=/*_MOVE/
 }

@@ -2,7 +2,7 @@
 
 allow group $GROUP to manage virtual-network-family in $LOCATION
 where all {
-    request.permission=!/*_DELETE/,
+    request.permission!=/*_DELETE/,
     any {
         request.permission=/LOCAL_PEERING_GATEWAY_*/,
         request.permission=/LOCAL_PEERING_GATEWAY_CONNECT_FROM_*/,

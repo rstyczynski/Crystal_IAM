@@ -1,6 +1,16 @@
 # https://docs.oracle.com/en/engineered-systems/exadata-cloud-service/ecscm/ecs-policy-details.html#GUID-A967AE72-E18C-40ED-A928-D865618E9B9E
 
 allow group $GROUP to use virtual-network-family in $LOCATION
-where all {
-    any {request.permission=/NETWORK-SECURITY-GROUP_*/, request.permission=/SECURITY-LIST_*/}
-}
+where 
+    any {
+        all {
+            any {
+                request.permission=/NETWORK-SECURITY-GROUP_*/, 
+                request.permission=/SECURITY-LIST_*/
+            }
+        },
+        # required access to VCN when operating OCI Console
+        any {
+            request.permission='VCN_READ'
+        }
+    }
