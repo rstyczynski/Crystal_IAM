@@ -278,6 +278,53 @@ Parameters is the templates are always provided as uppercase with $ sign at the 
 |$RESOURCE_P3|resource's 3rd parameter|
 |$RESOURCE_P4|resource's 4th parameter|
 
+## policy count optimization
+OCI limits number of access policies, and number of policy statements inside of the access policy. Optimization of the number of access policy  is subject for further extension of Crystal@IAM (L40). Optimization of policy statements is implemented by clustering access rights e.g. COR ia a single template admin instead of three individual for Create, Optimize, and Read. You can further optimize number of policy statements in your templates using IAM access policy logical syntax, knowing that individual policy statements are always executed as an alternative.
+
+Such two access statements:
+
+```
+allow group $GROUP to manage virtual-network-family in $LOCATION
+where all {
+            request.permission!=/*_DELETE/,
+            any {
+                request.permission=/NETWORK_SECURITY_GROUP_*/,
+                request.permission=/SECURITY_LIST_*/
+            }
+        }
+
+allow group $GROUP to manage virtual-network-family in $LOCATION
+where all {
+            any {
+                request.permission=/*_READ/,
+                request.permission='VCN_ATTACH'
+            },
+            request.permission=/VCN_*/
+        }
+```
+
+may be implemented as one.
+
+```
+allow group $GROUP to manage virtual-network-family in $LOCATION
+where any {
+        all {
+            request.permission!=/*_DELETE/,
+            any {
+                request.permission=/NETWORK_SECURITY_GROUP_*/,
+                request.permission=/SECURITY_LIST_*/
+            }
+        }, 
+        all {
+            any {
+                request.permission=/*_READ/,
+                request.permission='VCN_ATTACH'
+            },
+            request.permission=/VCN_*/
+        }
+    }
+```
+
 
 # Author
 rstyczynski@gmail.com, https://github.com/rstyczynski/Crystal_IAM

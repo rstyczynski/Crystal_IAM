@@ -1,10 +1,37 @@
-# https://docs.oracle.com/en/engineered-systems/exadata-cloud-service/ecscm/ecs-policy-details.html#GUID-A967AE72-E18C-40ED-A928-D865618E9B9E
+https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Identity/policyreference/corepolicyreference.htm#Details_for_the_Core_Services
+allow group $GROUP to manage virtual-network-family in $LOCATION
+where any {
+        all {
+            request.permission!=/*_DELETE/,
+            any {
+                request.permission=/NETWORK_SECURITY_GROUP_*/,
+                request.permission=/SECURITY_LIST_*/
+            }
+        }, 
+        all {
+            any {
+                request.permission=/*_READ/,
+                request.permission='VCN_ATTACH'
+            },
+            request.permission=/VCN_*/
+        }
+    }
+
 
 allow group $GROUP to manage virtual-network-family in $LOCATION
 where all {
-    request.permission!=/*_DELETE/,
-    any {
-        request.permission=/NETWORK-SECURITY-GROUP_*/,
-        request.permission=/SECURITY-LIST_*/
-    }
-}
+            request.permission!=/*_DELETE/,
+            any {
+                request.permission=/NETWORK_SECURITY_GROUP_*/,
+                request.permission=/SECURITY_LIST_*/
+            }
+        }
+
+allow group $GROUP to manage virtual-network-family in $LOCATION
+where all {
+            any {
+                request.permission=/*_READ/,
+                request.permission='VCN_ATTACH'
+            },
+            request.permission=/VCN_*/
+        }

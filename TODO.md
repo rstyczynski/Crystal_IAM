@@ -9,7 +9,8 @@ M40|
 
 # Logic
 L10|Move bash code to proper style with command line arguments, error handling, etc.
-L40|
+L40|Optimize number of policy statements by collecting together policies attached at the same level
+L50|
 
 # Done
 M20|Access policies are attached to compartments, if needed|Available from spreadsheet v6
