@@ -137,6 +137,16 @@ ssconvert ./data/ciam_model_v6.xlsx ./tmp/ciam_model_v6.csv
 ls policies
 ```
 
+You can generate access policy for just one access group; possibly for testing purposes.
+
+```
+export out_timestamp=no
+export access_groups=network_admin
+ssconvert ./data/ciam_model_v6.xlsx ./tmp/ciam_model_v6.csv 
+./bin/ciam.sh ./tmp/ciam_model_v6.csv 
+cat ./policies/tenancy/network_admin
+```
+
 # How to use the spreadsheet
 The spreadsheet's rows represent business divisions and access groups. The access groups are always prefixed by a dash '-' and the business divisions serve as a logical grouping. You are free to add new rows using the regular spreadsheet's 'insert row' operation. Please ensure that new rows are always added above the one labeled '(new row? Always insert above this line)'.
 
@@ -279,9 +289,9 @@ Parameters is the templates are always provided as uppercase with $ sign at the 
 |$RESOURCE_P4|resource's 4th parameter|
 
 ## policy count optimization
-OCI limits number of access policies, and number of policy statements inside of the access policy. Optimization of the number of access policy  is subject for further extension of Crystal@IAM (L40). Optimization of policy statements is implemented by clustering access rights e.g. COR ia a single template admin instead of three individual for Create, Optimize, and Read. You can further optimize number of policy statements in your templates using IAM access policy logical syntax, knowing that individual policy statements are always executed as an alternative.
+OCI limits number of access policies, and number of policy statements inside of the access policy. Optimization of the number of access policy  is subject for further extension of Crystal@IAM (L40). Optimization of policy statements is implemented by clustering access rights e.g. COR ia a single template admin instead of three individual for Create, Optimize, and Retire. You can further optimize number of policy statements in your templates using IAM access policy logical syntax, knowing that individual policy statements are always executed as an alternative.
 
-Such two access statements:
+Such two access statements for :
 
 ```
 allow group $GROUP to manage virtual-network-family in $LOCATION

@@ -52,17 +52,14 @@ decode_privilege_code() {
 cat $ciam_model | head -$location_row | tail -1 | tr "$csv_delim" '\n' > $tmp/location.tmp
 cat $ciam_model | head -$resource_row | tail -1 | tr "$csv_delim" '\n' > $tmp/resource.tmp
 
-access_groups=$(cat $ciam_model | grep "^$csv_quotation-" | cut -d "$csv_delim" -f$access_groups_column | sed 's/- //g' | tr -d "$csv_quotation")
+if [ -z "$access_groups" ]; then
+    access_groups=$(cat $ciam_model | grep "^$csv_quotation-" | cut -d "$csv_delim" -f$access_groups_column | sed 's/- //g' | tr -d "$csv_quotation")
+fi
 
 echo "=========== ACCESS GROUPS =========="
 echo $access_groups
 echo "===================================="
 
-# test on one group
-# access_groups=audit
-# access_groups=compliance_admin
-# access_groups=access_admin
-access_groups=compute_operator_appgrp1
 for access_group in $access_groups; do
     echo "=========== ACCESS GROUP ==========="
     echo $access_group
