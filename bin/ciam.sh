@@ -16,6 +16,7 @@ tx_id=$3
 : ${policy_out:=./policies}
 : ${tmp:=./tmp}
 rm -f $tmp/*.service
+rm -f $tmp/*.service_clean
 rm -f $tmp/*.tmp
 
 # L20|Generated policies are written to timestamp directory under specified destination directory
@@ -36,7 +37,7 @@ access_groups_column=1
 mkdir -p $tmp
 mkdir -p $policy_out
 
-decode_privilege_code() {
+function decode_privilege_code() {
     case $1 in
         COR) echo "admin" ;;
         C) echo "create" ;;
@@ -49,6 +50,27 @@ decode_privilege_code() {
         P) echo "plan" ;;
         *) echo "unknown" ;;
     esac
+}
+
+function postprocess_policy_template() {
+    grep -v "^\s*#" | # remove comments 
+    sed "s/\$GROUP/$access_group/g" | # update group name
+    sed "s/\$LOCATION/$location/g" | # update location
+    sed "s/\$LOCATION_P1/$location_p1/g" | # update location
+    sed "s/\$LOCATION_P2/$location_p2/g" | # update location  
+    sed "s/\$LOCATION_P3/$location_p3/g" | # update location  
+    sed "s/\$LOCATION_P4/$location_p4/g" | # update location                    sed "s/\$LOCATION/$location/g" | # update location
+    sed "s/\$RESOURCE_P1/$resource_p1/g" | # update location
+    sed "s/\$RESOURCE_P2/$resource_p2/g" | # update location
+    sed "s/\$RESOURCE_P3/$resource_p3/g" | # update location
+    sed "s/\$RESOURCE_P4/$resource_p4/g" | # update location
+    sed "s|\$COMMENT|NOTE:$resource/$privilege_name tx:$tx_id|g" | # update comment
+    tr '[\n\t]' ' ' | # convert to one line, remove tabs
+    tr -s ' ' |    # remove duplicated spaces
+    sed 's/allow/\nallow/g' | # new line before allow /adjustment for multi statement templates/
+    sed 's/endorse/\nendorse/g' | # new line before endorse /adjustment for multi statement templates/
+    sed 's/admit/\nadmit/g' | # new line before admit /adjustment for multi statement templates/
+    sed 's/define/\ndefine/g' # new line before define /adjustment for multi statement templates/
 }
 
 cat $ciam_model | head -$location_row | tail -1 | tr "$csv_delim" '\n' > $tmp/location.tmp
@@ -293,24 +315,7 @@ for access_group in $access_groups; do
                     # Note that list of words starting new line muyst be handled. 
                     # Now it's: (1) allow.
                     cat "$policy_profile/$resource/$privilege_name" |
-                    grep -v "^\s*#" | # remove comments 
-                    sed "s/\$GROUP/$access_group/g" | # update group name
-                    sed "s/\$LOCATION/$location/g" | # update location
-                    sed "s/\$LOCATION_P1/$location_p1/g" | # update location
-                    sed "s/\$LOCATION_P2/$location_p2/g" | # update location  
-                    sed "s/\$LOCATION_P3/$location_p3/g" | # update location  
-                    sed "s/\$LOCATION_P4/$location_p4/g" | # update location                    sed "s/\$LOCATION/$location/g" | # update location
-                    sed "s/\$RESOURCE_P1/$resource_p1/g" | # update location
-                    sed "s/\$RESOURCE_P2/$resource_p2/g" | # update location
-                    sed "s/\$RESOURCE_P3/$resource_p3/g" | # update location
-                    sed "s/\$RESOURCE_P4/$resource_p4/g" | # update location
-                    sed "s|\$COMMENT|NOTE:$resource/$privilege_name tx:$tx_id|g" | # update comment
-                    tr '[\n\t]' ' ' | # convert to one line, remove tabs
-                    tr -s ' ' |    # remove duplicated spaces
-                    sed 's/allow/\nallow/g' | # new line before allow /adjustment for multi statement templates/
-                    sed 's/endorse/\nendorse/g' | # new line before endorse /adjustment for multi statement templates/
-                    sed 's/admit/\nadmit/g' | # new line before admit /adjustment for multi statement templates/
-                    sed 's/define/\ndefine/g' | # new line before define /adjustment for multi statement templates/
+                    postprocess_policy_template |
                     cat >> $tmp/$access_group.tmp
                     echo >> $tmp/$access_group.tmp
 
@@ -338,12 +343,20 @@ for access_group in $access_groups; do
 done
 
 # PT10|Policy statements required by services are available in templates
-rm $policy_out/tenancy/service_policies
+rm -rf $policy_out/tenancy/service_policies
 mkdir -p $policy_out/tenancy
-for service_policy in $(ls $policy_out/*.service); do
-    cat $service_policy >> $policy_out/tenancy/service_policies
+for service_policy in $(ls $tmp/*.service); do
+    cat $service_policy | postprocess_policy_template > $tmp/*.service_clean
 done
+
+cat $tmp/*.service_clean |
+sed '/^$/d' | # remove empty lines
+sed 's/^[ ]*//' | # remove leading spaces
+sort -u | # remove duplicated policies 
+cat > $policy_out/tenancy/service_policies
+
 rm -f $tmp/*.service
+rm -f $tmp/*.service_clean
 
 rm -f $tmp/*.tmp
 echo "Completed."

@@ -1,6 +1,5 @@
 
 # Policy templates
-PT10|Policy statements required by services are available in templates
 PT30|
 
 # Modeling
@@ -17,6 +16,7 @@ M20|Access policies are attached to compartments, if needed|Available from sprea
 L20|Generated policies are written to timestamp directory under specified destination directory
 L30|Verify provided privilege codes
 PT20|Add support for Network Path Analyzer
+PT10|Policy statements required by services are available in templates
 
 # Rejected
 M10|Policy statements required by services are handled by the spreadsheet| No need do have it in spreadsheet. Each time resource is used tenancy level statements must be added.
