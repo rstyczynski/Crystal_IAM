@@ -73,6 +73,12 @@ function postprocess_policy_template() {
     sed 's/define/\ndefine/g' # new line before define /adjustment for multi statement templates/
 }
 
+function postprocess_access_policy() {
+    sed '/^$/d' | # remove empty lines
+    sed 's/^[ ]*//' | # remove leading spaces
+    sort -u # remove duplicated policies 
+}
+
 cat $ciam_model | head -$location_row | tail -1 | tr "$csv_delim" '\n' > $tmp/location.tmp
 cat $ciam_model | head -$resource_row | tail -1 | tr "$csv_delim" '\n' > $tmp/resource.tmp
 
@@ -334,9 +340,7 @@ for access_group in $access_groups; do
 
             # process access policy file
             cat $tmp/$access_group.tmp |
-            sed '/^$/d' | # remove empty lines
-            sed 's/^[ ]*//' | # remove leading spaces
-            sort -u | # remove duplicated policies
+            postprocess_access_policy |
             cat > $policy_out/$attached_at/$access_group
         done
     done < "$tmp/line.tmp"
@@ -350,9 +354,7 @@ for service_policy in $(ls $tmp/*.service); do
 done
 
 cat $tmp/*.service_clean |
-sed '/^$/d' | # remove empty lines
-sed 's/^[ ]*//' | # remove leading spaces
-sort -u | # remove duplicated policies 
+postprocess_access_policy |
 cat > $policy_out/tenancy/service_policies
 
 rm -f $tmp/*.service
