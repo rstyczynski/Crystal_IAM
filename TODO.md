@@ -1,7 +1,8 @@
 
 # Policy templates
 PT10|Policy statements required by services are available in templates
-PT20|
+PT20|Add support for Network Path Analyzer
+PT30|
 
 # Modeling
 M30|Define grammar for Crystal@AIM policy statement (CPS). Having this spreadsheet will be converted to CPS, and logic will convert it to final statements using templates.
@@ -54,3 +55,18 @@ out_timestamp - yes
 allow group network_admin to admin local_network in compartment network /*attach at network */
 
 allow group governance_admin to admin iam_tag-namespaces in tenancy having parameter1=abc
+
+## PT20|Add support for Network Path Analyzer
+
+### Documentation
+https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm
+
+### access policy
+allow group <group-name> to manage vn-path-analyzer-test in tenancy 
+
+### service level access policy
+allow any-user to inspect compartments in tenancy where all { request.principal.type = 'vnpa-service' }
+allow any-user to read instances in tenancy where all { request.principal.type = 'vnpa-service' }
+allow any-user to read virtual-network-family in tenancy where all { request.principal.type = 'vnpa-service' }
+allow any-user to read load-balancers in tenancy where all { request.principal.type = 'vnpa-service' }
+allow any-user to read network-security-group in tenancy where all { request.principal.type = 'vnpa-service' } 

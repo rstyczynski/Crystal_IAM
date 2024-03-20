@@ -1,0 +1,3 @@
+# https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm
+
+allow group $GROUP to manage vn-path-analyzer-test in tenancy

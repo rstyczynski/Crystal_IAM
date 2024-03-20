@@ -71,9 +71,9 @@ for access_group in $access_groups; do
     unset attached_at
 
     echo "cat $ciam_model | grep \"^$csv_quotation- $access_group$csv_quotation$csv_delim\""  
-    cat $ciam_model | grep "^$csv_quotation\s*- $access_group$csv_quotation$csv_delim" | tr "$csv_delim" '\n'  > $tmp/priviliges.tmp
+    cat $ciam_model | grep "^$csv_quotation\s*- $access_group$csv_quotation$csv_delim" | tr "$csv_delim" '\n'  > $tmp/Privileges.tmp
     
-    paste -d, $tmp/location.tmp $tmp/resource.tmp $tmp/priviliges.tmp | grep -v 'Team,team,' > $tmp/line.tmp
+    paste -d, $tmp/location.tmp $tmp/resource.tmp $tmp/Privileges.tmp | grep -v 'Team,team,' > $tmp/line.tmp
 
     while IFS=',' read -r location resource privileges; do
  
@@ -87,7 +87,7 @@ for access_group in $access_groups; do
         echo "Access group:>$access_group<"
         echo "Location:>$location<"
         echo "Resource:>$resource<"
-        echo "Priviliges:>$privileges<"
+        echo "Privileges:>$privileges<"
 
         # remove csv_quotation
         access_group="${access_group//$csv_quotation}"
@@ -167,7 +167,7 @@ for access_group in $access_groups; do
         echo "Resource parameter no.2:>$resource_p2<"
         echo "Resource parameter no.3:>$resource_p3<"
         echo "Resource parameter no.4:>$resource_p4<"
-        echo "Priviliges:>$privileges<"
+        echo "Privileges:>$privileges<"
 
         if [ ! -d "$policy_profile/$resource" ]; then
             echo "Error: access definition not found for $resource."
@@ -196,9 +196,11 @@ for access_group in $access_groups; do
         fi
 
         if [ -z "$privileges" ]; then
-            echo "Warning: No priviliges defined for $resource"
+            echo "Warning: No Privileges defined for $resource"
             continue
         fi
+
+        
 
         # M20|Access policies are attached to compartments, if needed
         if [ ! "$attached_at" = tenancy ]; then
@@ -260,7 +262,7 @@ for access_group in $access_groups; do
             if [ "$privilege_name" == "unknown" ]; then
                 echo "- privilege at position $index: $privilege_code -> unknown!"
                 echo "Access group: $access_group"
-                echo "Priviliges: $privileges"
+                echo "Privileges: $privileges"
                 exit 2
             else
                 echo "- privilege at position $index: $privilege_code -> $privilege_name"

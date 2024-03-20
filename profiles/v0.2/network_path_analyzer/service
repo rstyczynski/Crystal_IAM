@@ -1,0 +1,32 @@
+# https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm
+
+allow any-user to inspect compartments in tenancy 
+where 
+    all {
+        request.ad!='$COMMENT',
+        request.principal.type = 'vnpa-service' 
+    }
+allow any-user to read instances in tenancy 
+where 
+    all {
+        request.ad!='$COMMENT',
+        request.principal.type = 'vnpa-service'
+    }
+allow any-user to read virtual-network-family in tenancy 
+where 
+    all {
+        request.ad!='$COMMENT',
+        request.principal.type = 'vnpa-service'
+    }
+allow any-user to read load-balancers in tenancy 
+where 
+    all {
+        request.ad!='$COMMENT',
+        request.principal.type = 'vnpa-service'
+    }
+allow any-user to read network-security-group in tenancy 
+where 
+    all {
+        request.ad!='$COMMENT',
+        request.principal.type = 'vnpa-service'
+    }
