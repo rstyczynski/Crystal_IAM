@@ -1,0 +1,2 @@
+allow service blockstorage to use keys in $RESOURCE_P1
+
