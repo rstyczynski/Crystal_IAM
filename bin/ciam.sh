@@ -232,7 +232,8 @@ for access_group in $access_groups; do
 
         # PT10|Policy statements required by services are available in templates
         if [ -f "$policy_profile/$resource/service" ]; then
-            cat $policy_profile/$resource/service > $tmp/$resource.service
+            cat $policy_profile/$resource/service |
+            postprocess_policy_template > $tmp/$resource.service
         fi
 
         # M20|Access policies are attached to compartments, if needed
