@@ -167,7 +167,7 @@ for access_group in $access_groups; do
             resource_parameters=$(echo $resource | cut -f2 -d'/')
             resource_parameters="${resource_parameters#"${resource_parameters%%[![:space:]]*}"}"
 
-            resource=$(echo $resource | cut -f1 -d'/' | tr -d ' ')
+            resource=$(echo $resource | cut -f1 -d'/')
             echo "Resource: $resource comes with $resource_parameters"
         fi
         resource=$(echo $resource | tr ' ' '_')
@@ -186,10 +186,10 @@ for access_group in $access_groups; do
         echo "Access group:>$access_group<"
         echo "Location:>$location<"
         echo "Location parameters:>$location_parameters<"
-        echo "Resource location no.1:>$location_p1<"
-        echo "Resource location no.2:>$location_p2<"
-        echo "Resource location no.3:>$location_p3<"
-        echo "Resource location no.4:>$location_p4<"
+        echo "Location parameter no.1:>$location_p1<"
+        echo "Location parameter no.2:>$location_p2<"
+        echo "Location parameter no.3:>$location_p3<"
+        echo "Location parameter no.4:>$location_p4<"
 
         echo "Resource:>$resource<"
         echo "Resource parameters:>$resource_parameters<"

@@ -1,6 +1,11 @@
 
 # Policy templates
-PT30|
+PT30|Remove Administrators and self group from GROUP administrator rights (after CIS LZ)
+PT40|Remove 'AddIdpGroupMapping' and 'DeleteIdpGroupMapping' request.operation from identity-providers administrator rights (after CIS LZ)
+PT50|Update service access for services (after CIS LZ)
+PT60|Add vulnerability-scanning-service to policy profile
+PT70|Add OSMS to policy profile
+PT80|Add "define tenancy usage-report..." to cost management policies
 
 # Modeling
 M30|Define grammar for Crystal@AIM policy statement (CPS). Having this spreadsheet will be converted to CPS, and logic will convert it to final statements using templates.
@@ -70,3 +75,17 @@ allow any-user to read instances in tenancy where all { request.principal.type =
 allow any-user to read virtual-network-family in tenancy where all { request.principal.type = 'vnpa-service' }
 allow any-user to read load-balancers in tenancy where all { request.principal.type = 'vnpa-service' }
 allow any-user to read network-security-group in tenancy where all { request.principal.type = 'vnpa-service' } 
+
+## PT50|Update service access for services (after CIS LZ)
+
+### service level access policy
+Allow service vulnerability-scanning-service to manage instances in tenancy
+Allow service vulnerability-scanning-service to read repos in tenancy
+Allow service vulnerability-scanning-service to read vnic-attachments in tenancy
+Allow service vulnerability-scanning-service to read vnics in tenancy
+Allow service vulnerability-scanning-service to read compartments in tenancy
+
+Allow service osms to read instances in tenancy
+
+Allow service cloudguard to read all-resources in tenancy
+Allow service cloudguard to use network-security-groups in tenancy
