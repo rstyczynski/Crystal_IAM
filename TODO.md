@@ -28,7 +28,6 @@ PT50|Update service access for services (after CIS LZ)
 # Rejected
 M10|Policy statements required by services are handled by the spreadsheet| No need do have it in spreadsheet. Each time resource is used tenancy level statements must be added.
 
-
 # Implementation notes
 
 ## MM20|Access policies are attached to compartments, if needed
