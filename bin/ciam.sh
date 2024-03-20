@@ -15,6 +15,8 @@ tx_id=$3
 
 : ${policy_out:=./policies}
 : ${tmp:=./tmp}
+rm -f $tmp/*.service
+rm -f $tmp/*.tmp
 
 # L20|Generated policies are written to timestamp directory under specified destination directory
 : ${out_timestamp:=yes}
@@ -200,7 +202,10 @@ for access_group in $access_groups; do
             continue
         fi
 
-        
+        # PT10|Policy statements required by services are available in templates
+        if [ -f "$policy_profile/$resource/service" ]; then
+            cat $policy_profile/$resource/service > $tmp/$resource.service
+        fi
 
         # M20|Access policies are attached to compartments, if needed
         if [ ! "$attached_at" = tenancy ]; then
@@ -332,7 +337,13 @@ for access_group in $access_groups; do
     done < "$tmp/line.tmp"
 done
 
-echo $policy_out/$attached_at/$access_group
+# PT10|Policy statements required by services are available in templates
+rm $policy_out/tenancy/service_policies
+mkdir -p $policy_out/tenancy
+for service_policy in $(ls $policy_out/*.service); do
+    cat $service_policy >> $policy_out/tenancy/service_policies
+done
+rm -f $tmp/*.service
 
 rm -f $tmp/*.tmp
 echo "Completed."
