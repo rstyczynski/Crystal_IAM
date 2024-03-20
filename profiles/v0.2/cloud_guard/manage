@@ -1,3 +1,3 @@
-# https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/certificatespolicyreference.htm
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/cloud-guard/using/prerequisites.htm#prerequisites
 
 allow group $GROUP to manage cloud-guard-family in $LOCATION

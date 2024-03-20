@@ -1,0 +1,4 @@
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/cloud-guard/using/prerequisites.htm#prerequisites
+
+allow service cloudguard to read all-resources in $LOCATION
+allow service cloudguard to use network-security-groups in $LOCATION

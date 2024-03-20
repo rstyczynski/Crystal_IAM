@@ -6,6 +6,8 @@ PT50|Update service access for services (after CIS LZ)
 PT60|Add vulnerability-scanning-service to policy profile
 PT70|Add OSMS to policy profile
 PT80|Add "define tenancy usage-report..." to cost management policies
+PT90|
+
 
 # Modeling
 M30|Define grammar for Crystal@AIM policy statement (CPS). Having this spreadsheet will be converted to CPS, and logic will convert it to final statements using templates.
@@ -87,5 +89,9 @@ Allow service vulnerability-scanning-service to read compartments in tenancy
 
 Allow service osms to read instances in tenancy
 
-Allow service cloudguard to read all-resources in tenancy
-Allow service cloudguard to use network-security-groups in tenancy
+OK Allow service cloudguard to read all-resources in tenancy
+OK Allow service cloudguard to use network-security-groups in tenancy
+
+OK Allow service objectstorage-uk-london-1 to use keys in compartment security-cmp
+
+Allow service blockstorage, oke, streaming, Fssoc4Prod to use keys in compartment security-cmp
