@@ -9,5 +9,7 @@ where all {
         request.permission=/NETWORK_SOURCE_*/,
         request.permission=/POLICY_*/,
         request.permission=/CREDENTIAL_*/
-        }
+        },
+    target.group.name != 'Administrators', 
+    target.group.name != '$GROUP'
 }

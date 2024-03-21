@@ -1,12 +1,13 @@
 
 # Policy templates
-PT30|Remove Administrators and self group from GROUP administrator rights (after CIS LZ)
 PT40|Remove 'AddIdpGroupMapping' and 'DeleteIdpGroupMapping' request.operation from identity-providers administrator rights (after CIS LZ)
 PT60|Add vulnerability-scanning-service to policy profile
 PT70|Add OSMS to policy profile
-PT90|Add vault access to streaming, Fssoc4Prod 
 PT100|Fine tune Cloud Guard template
 PT110|
+
+## low priority
+PT90|Add vault access to streaming, Fssoc4Prod 
 
 # Modeling
 M30|Define grammar for Crystal@AIM policy statement (CPS). Having this spreadsheet will be converted to CPS, and logic will convert it to final statements using templates.
@@ -25,6 +26,7 @@ PT20|Add support for Network Path Analyzer
 PT10|Policy statements required by services are available in templates
 PT50|Update service access for services (after CIS LZ)
 PT80|Add "define tenancy usage-report..." to cost management policies
+PT30|Remove Administrators and self group from GROUP administrator rights (after CIS LZ)
 
 # Rejected
 M10|Policy statements required by services are handled by the spreadsheet| No need do have it in spreadsheet. Each time resource is used tenancy level statements must be added.

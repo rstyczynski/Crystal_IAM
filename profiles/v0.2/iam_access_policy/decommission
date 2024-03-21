@@ -4,5 +4,13 @@ allow group $GROUP to manage all-resources in $LOCATION
 where all {
     request.permission!=/*_CREATE/,
     request.permission!=/*_MOVE/,
-    any {request.permission=/GROUP_*/, request.permission=/DYNAMIC_GROUP_*/, request.permission=/NETWORK_SOURCE_*/, request.permission=/POLICY_*/, request.permission=/CREDENTIAL_*/}
+    any {
+        request.permission=/GROUP_*/,
+        request.permission=/DYNAMIC_GROUP_*/,
+        request.permission=/NETWORK_SOURCE_*/,
+        request.permission=/POLICY_*/,
+        request.permission=/CREDENTIAL_*/
+    },
+    target.group.name != 'Administrators', 
+    target.group.name != '$GROUP'
 }
