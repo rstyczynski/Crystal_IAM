@@ -1,6 +1,5 @@
 
 # Policy templates
-PT40|Remove 'AddIdpGroupMapping' and 'DeleteIdpGroupMapping' request.operation from identity-providers administrator rights (after CIS LZ)
 PT60|Add vulnerability-scanning-service to policy profile
 PT70|Add OSMS to policy profile
 PT100|Fine tune Cloud Guard template
@@ -27,6 +26,7 @@ PT10|Policy statements required by services are available in templates
 PT50|Update service access for services (after CIS LZ)
 PT80|Add "define tenancy usage-report..." to cost management policies
 PT30|Remove Administrators and self group from GROUP administrator rights (after CIS LZ)
+PT40|Remove 'AddIdpGroupMapping' and 'DeleteIdpGroupMapping' request.operation from identity-providers administrator rights (after CIS LZ)
 
 # Rejected
 M10|Policy statements required by services are handled by the spreadsheet| No need do have it in spreadsheet. Each time resource is used tenancy level statements must be added.

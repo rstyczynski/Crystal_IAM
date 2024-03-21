@@ -3,9 +3,12 @@
 allow group $GROUP to manage all-resources in $LOCATION
 where all {
     request.permission=/*_MOVE/,
-    any {request.permission=/DOMAIN_*/, 
+    any {
+        request.permission=/DOMAIN_*/, 
         request.permission=/IDENTITY_PROVIDER_*/,
         request.permission=/AUTHENTICATION_POLICY_*/,
         request.permission=/USER_*/
-        }
+    },
+    request.operation = 'AddIdpGroupMapping', 
+    request.operation = 'DeleteIdpGroupMapping'
 }
