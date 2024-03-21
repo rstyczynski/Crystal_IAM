@@ -4,9 +4,9 @@ PT30|Remove Administrators and self group from GROUP administrator rights (after
 PT40|Remove 'AddIdpGroupMapping' and 'DeleteIdpGroupMapping' request.operation from identity-providers administrator rights (after CIS LZ)
 PT60|Add vulnerability-scanning-service to policy profile
 PT70|Add OSMS to policy profile
-PT80|Add "define tenancy usage-report..." to cost management policies
 PT90|Add vault access to streaming, Fssoc4Prod 
-PT100|
+PT100|Fine tune Cloud Guard template
+PT110|
 
 # Modeling
 M30|Define grammar for Crystal@AIM policy statement (CPS). Having this spreadsheet will be converted to CPS, and logic will convert it to final statements using templates.
@@ -94,3 +94,9 @@ OK Allow service cloudguard to use network-security-groups in tenancy
 OK Allow service objectstorage-uk-london-1 to use keys in compartment security-cmp
 
 Allow service blockstorage, oke, streaming, Fssoc4Prod to use keys in compartment security-cmp
+
+## PT100|Fine tune Cloud Guard template
+
+### Documentation
+https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/cloud-guard/using/prerequisites.htm#prerequisites
+

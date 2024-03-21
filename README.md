@@ -277,7 +277,7 @@ TODO
 Resource templates are gathered together in a directory, which is a policy set name. Second level directory is a resource name, what you see from above examples.
 
 ## template parameters
-Parameters is the templates are always provided as uppercase with $ sign at the beginning. 
+Parameters is the templates are always provided as uppercase with $ sign at the beginning. Crystal@IAM supports following parameters:
 
 | parameter | description |
 | ----- | ----------- |
@@ -287,6 +287,7 @@ Parameters is the templates are always provided as uppercase with $ sign at the 
 |$RESOURCE_P2|resource's 2nd parameter|
 |$RESOURCE_P3|resource's 3rd parameter|
 |$RESOURCE_P4|resource's 4th parameter|
+|$COST_USAGE_TENANCY_OCID|cost and usage tenancy identifier|
 
 ## policy count optimization
 OCI limits number of access policies, and number of policy statements inside of the access policy. Optimization of the number of access policy  is subject for further extension of Crystal@IAM (L40). Optimization of policy statements is implemented by clustering access rights e.g. COR ia a single template admin instead of three individual for Create, Optimize, and Retire. You can further optimize number of policy statements in your templates using IAM access policy logical syntax, knowing that individual policy statements are always executed as an alternative.

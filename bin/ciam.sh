@@ -9,6 +9,8 @@ tx_id=$3
 : ${tx_id:="created by $(whoami) on $(date) with policy profile: $policy_profile_name"}
 : ${compartment_pfx:='cmp-'}
 
+: ${COST_USAGE_TENANCY_OCID:='ocid1.tenancy.oc1..aaaaaaaaned4fkpkisbwjlr56u7cj63lf3wffbilvqknstgtvzub7vhqkggq'}
+
 : ${csv_delim:=','}
 : ${csv_quotation:='"'}
 : ${param_delim:="|"}
@@ -64,6 +66,7 @@ function postprocess_policy_template() {
     sed "s/\$RESOURCE_P2/$resource_p2/g" | # update location
     sed "s/\$RESOURCE_P3/$resource_p3/g" | # update location
     sed "s/\$RESOURCE_P4/$resource_p4/g" | # update location
+    sed "s/\$COST_USAGE_TENANCY_OCID/$COST_USAGE_TENANCY_OCID/g" | # update location
     sed "s|\$COMMENT|NOTE:$resource/$privilege_name tx:$tx_id|g" | # update comment
     tr '[\n\t]' ' ' | # convert to one line, remove tabs
     tr -s ' ' |    # remove duplicated spaces
