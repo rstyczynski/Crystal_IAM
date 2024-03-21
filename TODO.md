@@ -24,6 +24,7 @@ L30|Verify provided privilege codes
 PT20|Add support for Network Path Analyzer
 PT10|Policy statements required by services are available in templates
 PT50|Update service access for services (after CIS LZ)
+PT80|Add "define tenancy usage-report..." to cost management policies
 
 # Rejected
 M10|Policy statements required by services are handled by the spreadsheet| No need do have it in spreadsheet. Each time resource is used tenancy level statements must be added.
