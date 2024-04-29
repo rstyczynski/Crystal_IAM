@@ -192,7 +192,7 @@ At the bottom row, under space for access configuration, you see line with 'Miss
 Attention! Do not modify rows above the header row. The logic assumes that the header starts at a specific row number and the data follows. While this is parameterized in the logic, there is no need to alter it.
 
 # How to model policy templates
-Crystal@AIM is based on trivial templates. Admin privileges for a file system looks the following:
+Crystal@AIM is based on a trivial templates. Admin privileges for a file system looks the following:
 
 ```
 cat ./profiles/v0.2/file_system/admin
