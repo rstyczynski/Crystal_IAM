@@ -336,6 +336,18 @@ where any {
     }
 ```
 
+# Testing policies
+## OCI Console
+OCI Console typically requires more privileges that required as Console shows context of the resource. Manual testing is required to spot missing privileges.
+
+Note that after policy change, it's required to reload OCI Console page several times. Good step is to remove all browsing history, before performing the final verification.
+
+## CLI
+TODO
+
+# Known problems
+## MANAGE is not always superset of lower privileges
+When resource does not implement MANAGE privilege, you must specify the lower one that is supported. Example: cloud-guard-recommendations which supports only INSPECT
 
 # Author
 rstyczynski@gmail.com, https://github.com/rstyczynski/Crystal_IAM

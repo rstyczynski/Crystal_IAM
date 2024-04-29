@@ -1,0 +1,15 @@
+# https://docs.oracle.com/en-us/iaas/cloud-guard/using/respond-recipes-about.htm
+# https://docs.oracle.com/en-us/iaas/cloud-guard/using/respond-recipes-reference.htm
+
+allow service cloudguard to manage instance-family in $LOCATION
+allow service cloudguard to manage object-family in $LOCATION
+allow service cloudguard to manage buckets in $LOCATION
+allow service cloudguard to manage users in $LOCATION
+allow service cloudguard to manage policies in $LOCATION
+allow service cloudguard to manage keys in $LOCATION
+
+allow service cloudguard to manage private-ips in $LOCATION
+allow service cloudguard to manage public-ips in $LOCATION
+allow service cloudguard to manage internet-gateways in $LOCATION
+allow service cloudguard to manage vcns in $LOCATION
+allow service cloudguard to manage route-tables in $LOCATION

@@ -1,0 +1,4 @@
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/cloud-guard/using/prerequisites.htm#prerequisites
+
+allow group $GROUP to inspect cloud-guard-family in $LOCATION
+allow group $GROUP to manage cloud-guard-responder-recipes in $LOCATION

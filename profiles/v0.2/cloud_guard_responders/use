@@ -1,0 +1,9 @@
+# https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/cloud-guard/using/prerequisites.htm#prerequisites
+
+allow group $GROUP to inspect cloud-guard-family in $LOCATION
+
+# use - access to dismiss and resolve
+# manage - access to remediate
+allow group $GROUP to use cloud-guard-problems in $LOCATION
+# use - skip, execute
+allow group $GROUP to use cloud-guard-responder-executions in $LOCATION

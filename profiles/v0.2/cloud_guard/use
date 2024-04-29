@@ -1,3 +1,7 @@
 # https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/cloud-guard/using/prerequisites.htm#prerequisites
 
 allow group $GROUP to use cloud-guard-family in $LOCATION
+
+# https://docs.oracle.com/en-us/iaas/Content/threat-intel/using/policies.htm
+# Note: It's tenancy only
+allow group $GROUP to read threat-intel-family in $LOCATION
